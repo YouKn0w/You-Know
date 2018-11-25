@@ -16,7 +16,7 @@ router.get("/login", (req, res, next) => {
 
 router.post("/login", passport.authenticate("local", {
   successRedirect: "/main",
-  failureRedirect: "/auth/login",
+  failureRedirect: "/login",
   failureFlash: true,
   passReqToCallback: true
 }));
@@ -52,8 +52,18 @@ router.post("/signup", (req, res, next) => {
   const password = req.body.password;
   const email = req.body.email;
   const confirmationCode = token;
-  if (username === "" || password === "") {
-    res.render("auth/signup", { message: "Indicate username and password" });
+  if (username === "") {
+    res.render("auth/signup", { message: "Indicate an username" });
+    return;
+  }
+
+  if (password === "") {
+    res.render("auth/signup", { message: "Indicate a password" });
+    return;
+  }
+
+  if (email === "") {
+    res.render("auth/signup", { message: "Indicate an email" });
     return;
   }
 
@@ -62,36 +72,43 @@ router.post("/signup", (req, res, next) => {
       res.render("auth/signup", { message: "The username already exists" });
       return;
     }
+  })
+    .then(() => {
+      User.findOne({ email }, "email", (err, user) => {
+        if (user !== null) {
+          res.render("auth/signup", { message: "The email already exists" });
+          return;
+        }
+      })
+      const salt = bcrypt.genSaltSync(bcryptSalt);
+      const hashPass = bcrypt.hashSync(password, salt);
 
-    const salt = bcrypt.genSaltSync(bcryptSalt);
-    const hashPass = bcrypt.hashSync(password, salt);
+      const newUser = new User({
+        username,
+        password: hashPass,
+        email,
+        confirmationCode
+      });
 
-    const newUser = new User({
-      username,
-      password: hashPass,
-      email,
-      confirmationCode
-    });
-
-    newUser.save()
-      .then(() => {
-        transporter.sendMail({
-          from: '"You💡Know Corporation" <labsandtests@gmail.com>',
-          to: email,
-          subject: 'Confirmation Email',
-          text: 'Welcome to You💡Know',
-          html: `<p>Welcome to You💡Know</p>
+      newUser.save()
+        .then(() => {
+          transporter.sendMail({
+            from: '"You💡Know Corporation" <labsandtests@gmail.com>',
+            to: email,
+            subject: 'Confirmation Email',
+            text: 'Welcome to You💡Know',
+            html: `<p>Welcome to You💡Know</p>
           <p>Your username is: ${username}</p>
           <a href="http://localhost:3000/confirm/${confirmationCode}">Confirm your email here, for activate your account & can access in our WebSite!<a>
           `,
+          })
+            .then(() => res.redirect("/login"))
+            .catch(err => console.log(err));
         })
-          .then(() => res.redirect("/login"))
-          .catch(err => console.log(err));
-      })
-      .catch(err => {
-        res.render("auth/signup", { message: "Something went wrong" });
-      })
-  });
+        .catch(err => {
+          res.render("auth/signup", { message: "Something went wrong, try again or wait, thanks and sorry for issues" });
+        })
+    })
 });
 
 router.get("/logout", (req, res) => {

@@ -20,6 +20,7 @@ const userSchema = new Schema({
     type: String,
     unique: true
   },
+  points: Number,
   stadistics: {
     General: {
       Correct: Number,
