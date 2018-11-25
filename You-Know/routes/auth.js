@@ -30,7 +30,7 @@ router.get("/main", ensureLoggedIn("/login"), (req, res, next) => {
   if (user.status !== "Active") {
     res.render("auth/login", { message: "This account isnt Activated" });
   } else {
-    res.render("auth/main")
+    res.render("auth/main", { user })
   }
 });
 
