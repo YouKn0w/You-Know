@@ -60,12 +60,13 @@ body {
   min-height: 100vh;
   font-size: 16px;
   background-color: #FAFAFA;
-  color: #212121;
-  overflow-x: hidden; }
+  color: #212121; }
 
 * {
-  transition: all .2s ease-in-out;
-  box-sizing: border-box; }
+  transition: all .2s ease-in-out; }
+  color: #212121;
+  overflow-x: hidden;
+box-sizing: border-box;}
 
 /*---------------------------------*/
 /*------------ FONTS --------------*/
@@ -125,6 +126,7 @@ a.link {
   min-width: 100vw;
   background: linear-gradient(217deg, rgba(3, 171, 244, 0.8), rgba(3, 171, 244, 0) 70.71%), linear-gradient(127deg, rgba(48, 235, 178, 0.8), rgba(48, 235, 178, 0) 70.71%), linear-gradient(336deg, rgba(249, 248, 113, 0.8), rgba(249, 248, 113, 0) 70.71%);
   padding: 1rem; }
+
   .auth .content-box {
     min-width: 15rem;
     min-height: 15rem;
@@ -161,8 +163,10 @@ a.link {
           border-color: transparent transparent #03A9F4 transparent;
           outline: none; }
       .auth .content-box form .error-message {
-        color: #B71C1C;
-        font-weight: 800;
-        margin-bottom: 2rem; }
+
+        font-family: 'Open Sans', sans-serif;
+        font-weight: 700;
+        color: #C62828;
+        margin-bottom: 1rem; }
 
 /*# sourceMappingURL=style.css.map */
