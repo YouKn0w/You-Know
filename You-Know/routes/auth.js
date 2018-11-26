@@ -42,8 +42,11 @@ router.post("/signup", uploadCloud.single('photo'), (req, res, next) => {
   }
   const username = req.body.username;
   const password = req.body.password;
+  const confirmPass = req.body.password;
   const email = req.body.email;
-  const imagePath = req.file.url;
+
+  const imagePath = (req.file === undefined) ? null : req.file.url;
+  
   const confirmationCode = token;
   if (username === "") {
     res.render("auth/signup", { message: "Indicate an username" });
@@ -52,6 +55,9 @@ router.post("/signup", uploadCloud.single('photo'), (req, res, next) => {
 
   if (password === "") {
     res.render("auth/signup", { message: "Indicate a password" });
+    return;
+  } else if (password === confirmPass) {
+    res.render("auth/signup", { message: "Confirm your password" });
     return;
   }
 

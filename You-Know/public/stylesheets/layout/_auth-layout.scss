@@ -4,6 +4,7 @@
   background: linear-gradient(217deg, rgba(3, 171, 244,.8), rgba(3, 171, 244,0) 70.71%),
             linear-gradient(127deg, rgba(48, 235, 178,.8), rgba(48, 235, 178,0) 70.71%),
             linear-gradient(336deg, rgba(249, 248, 113,.8), rgba(249, 248, 113,0) 70.71%);
+  padding: 1rem;
 
 
   .content-box {
@@ -49,6 +50,12 @@
           border-color: transparent transparent $blue-button transparent;
           outline: none;
         }
+      }
+
+      .error-message {
+        color: $error;
+        font-weight: 800;
+        margin-bottom: 2rem;
       }
     }
   }
