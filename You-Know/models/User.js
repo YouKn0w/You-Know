@@ -22,33 +22,33 @@ const userSchema = new Schema({
   },
   points: Number,
   stadistics: {
-    General: {
-      Correct: Number,
-      Failed: Number
+    general: {
+      correct: Number,
+      failed: Number
     },
-    Entertainment: {
-      Correct: Number,
-      Failed: Number
+    entertainment: {
+      correct: Number,
+      failed: Number
     },
-    Science: {
-      Correct: Number,
-      Failed: Number
+    science: {
+      correct: Number,
+      failed: Number
     },
-    Art: {
-      Correct: Number,
-      Failed: Number
+    art: {
+      correct: Number,
+      failed: Number
     },
-    History: {
-      Correct: Number,
-      Failed: Number
+    historyandgeography: {
+      correct: Number,
+      failed: Number
     },
-    Sports: {
-      Correct: Number,
-      Failed: Number
+    sports: {
+      correct: Number,
+      failed: Number
     },
-    Ironhack: {
-      Correct: Number,
-      Failed: Number
+    ironhack: {
+      correct: Number,
+      failed: Number
     }
   }
 }, {
