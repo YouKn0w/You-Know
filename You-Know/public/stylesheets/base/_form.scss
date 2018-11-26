@@ -37,5 +37,9 @@ form {
     @include open-sans-bold;
     color: $error-msg;
     margin-bottom: 1rem;
+
+    &:empty {
+      margin: 0;
+    }
   }
 }

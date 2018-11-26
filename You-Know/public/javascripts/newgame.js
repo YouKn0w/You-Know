@@ -15,6 +15,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   document.getElementById('new-game').onsubmit = (e => {
     e.preventDefault();
+    document.querySelector('.error-message').innerHTML = "";
 
     const difficulty = document.querySelector('input[name="difficulty"]:checked').value;
     const rounds = document.querySelector('input[name="rounds"]:checked').value;
@@ -27,6 +28,14 @@ document.addEventListener('DOMContentLoaded', () => {
     axios.post("http://localhost:3000/getquestions", config)
       .then(questions => {
         console.log(questions)
+        console.log(questions.data.results.length)
+        if (!questions.data.results.length) {
+          document.querySelector('.error-message').innerHTML = "No se han encontrado preguntas";
+        } else if (questions.data.message === undefined) {
+          console.log(questions)
+        } else {
+          document.querySelector('.error-message').innerHTML = questions.data.message;
+        }
       })
       .catch(err => console.log("Error: ", err))
 
