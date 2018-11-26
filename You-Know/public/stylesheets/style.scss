@@ -1,8 +1,10 @@
-body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-}
+// Base
+@import "base/_reset";
+@import "base/_config";
+@import "base/_base"; 
+@import "base/_button"; 
 
-a {
-  color: #00B7FF;
-}
+// Layout
+@import "layout/_general-layout";
+@import "layout/_auth-layout";
+@import "layout/_game-lauout"

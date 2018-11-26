@@ -1,31 +1,30 @@
-<h2>Signup</h2>
+<div class="auth main-container">
+  <div class="content-box">
+    <h1>Signup</h1>
+      {{#if message }}
+      <div class="error-message">{{ message }}</div>
+      {{/if}}
 
-<form action="/signup" method="POST" id="form-container">
-  <label for="username">Username</label>
-  <input id="username" type="text" name="username" placeholder="Your username">
+    <form action="/signup" method="POST" id="form-container" enctype="multipart/form-data">
+      <label for="username">Username</label>
+      <input id="username" type="text" name="username" placeholder="Your username">
 
-  <br><br>
+      <label for="password">Password</label>
+      <input id="password" type="password" name="password" placeholder="Your password">
 
-  <label for="password">Password</label>
-  <input id="password" type="password" name="password" placeholder="Your password">
+      <label for="email">Email</label>
+      <input id="email" type="email" name="email" placeholder="Your email">
 
-  <br><br>
+      <label for="photo">Photo</label>
+      <input type="file" name="photo" id="photo">
 
-  <label for="email">Email</label>
-  <input id="email" type="email" name="email" placeholder="Your email">
+      <button class="button">Create account</button>
 
-  <br><br>
-
-  {{#if message }}
-  <div class="error-message">{{ message }}</div>
-  {{/if}}
-
-  <br><br>
-
-  <button>Create account</button>
-
-  <p class="account-message">
-    Do you already have an account?
-    <a href="/login">Login</a>
-  </p>
-</form>
+      <p class="account-message">
+        Do you already have an account?
+        <a class="link" href="/login">Login</a>
+      </p>
+    </form>
+    <p><a class="link" href="/">Back to home</a></p>
+  </div>
+</div>

@@ -1,0 +1,49 @@
+/*---------------------------------*/
+/*----------- COLORS --------------*/
+/*---------------------------------*/
+
+/* GENERAL ----------------------- */
+/* ------------------------------- */
+$white: #FAFAFA;
+$black: #212121;
+$gray: #e7e7e7;
+
+/* CATEGORIES -------------------- */
+/* ------------------------------- */
+$general: #FFEB3B;
+$entertainment: #F44336;
+$science-nature: #4CAF50;
+$art: #673AB7;
+$history-geography: #03A9F4;
+$sports: #FF9800;
+
+/* AUTH -------------------------- */
+/* ------------------------------- */
+$blue-button: #03A9F4;
+$blue-button-rgba: rgba(3, 171, 244,.61);
+
+/*---------------------------------*/
+/*------------ FONTS --------------*/
+/*---------------------------------*/
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:400,700|Poppins:500');
+
+@mixin open-sans {
+  font-family: 'Open Sans', sans-serif;
+}
+
+@mixin open-sans-bold {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 700;
+}
+
+@mixin poppins {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 500;
+}
+
+/*---------------------------------*/
+/*----------- OTHERS --------------*/
+/*---------------------------------*/
+@mixin box-shadow {
+  box-shadow: 0 15px 20px rgba(0,0,0,0.2);
+}
