@@ -2,6 +2,7 @@ const express = require("express");
 const passport = require('passport');
 const { ensureLoggedIn, ensureLoggedOut } = require('connect-ensure-login');
 const transporter = require('../mail/transporter');
+const uploadCloud = require('../config/cloudinary');
 const router = express.Router();
 const User = require("../models/User");
 
@@ -33,7 +34,7 @@ router.get("/confirm/:confirmCode", (req, res, next) => {
     .catch(err => console.log(err));
 });
 
-router.post("/signup", (req, res, next) => {
+router.post("/signup", uploadCloud.single('photo'), (req, res, next) => {
   const characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
   let token = '';
   for (let i = 0; i < 25; i++) {
@@ -42,6 +43,7 @@ router.post("/signup", (req, res, next) => {
   const username = req.body.username;
   const password = req.body.password;
   const email = req.body.email;
+  const imagePath = req.file.url;
   const confirmationCode = token;
   if (username === "") {
     res.render("auth/signup", { message: "Indicate an username" });
@@ -78,6 +80,7 @@ router.post("/signup", (req, res, next) => {
         username,
         password: hashPass,
         email,
+        imagePath,
         confirmationCode
       });
 
