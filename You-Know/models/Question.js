@@ -4,15 +4,15 @@ const Schema = mongoose.Schema;
 const questionSchema = new Schema({
   category: {
     type: String,
-    enum: ["Ironhack"]
+    enum: ["ironhack"]
   },
   type: {
     type: String,
-    enum: ["multiple, boolean"]
+    enum: ["multiple", "boolean"]
   },
   difficulty: {
     type: String,
-    enum: ["easy, medium, hard"]
+    enum: ["easy", "medium", "hard"]
   },
   question: {
     type: String,

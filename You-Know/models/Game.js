@@ -6,7 +6,7 @@ const gameSchema = new Schema({
   totalQuestions: Number,
   difficulty: {
     type: String,
-    enum: ["easy, medium, hard"]
+    enum: ["easy", "medium", "hard", "any"]
   },
   points: Number
 }, {
