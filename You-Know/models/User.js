@@ -11,6 +11,7 @@ const userSchema = new Schema({
     type: String,
     unique: true
   },
+  imagePath: String,
   status: {
     type: String,
     enum: ["Pending Confirmation", "Active"],
@@ -38,7 +39,7 @@ const userSchema = new Schema({
       correct: Number,
       failed: Number
     },
-    historyandgeography: {
+    historyAndGeography: {
       correct: Number,
       failed: Number
     },
