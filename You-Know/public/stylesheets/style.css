@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css?family=Open+Sans:400,700|Poppins:500");
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
@@ -41,13 +42,120 @@ table {
   border-spacing: 0; }
 
 /*---------------------------------*/
-/*----------- CONFIG --------------*/
+/*----------- COLORS --------------*/
 /*---------------------------------*/
-/* COLORS ------------------------ */
+/* GENERAL ----------------------- */
 /* ------------------------------- */
-/* General ----------------------- */
+/* CATEGORIES -------------------- */
+/* ------------------------------- */
+/* AUTH -------------------------- */
+/* ------------------------------- */
+/*---------------------------------*/
+/*------------ FONTS --------------*/
+/*---------------------------------*/
+/*---------------------------------*/
+/*----------- OTHERS --------------*/
+/*---------------------------------*/
 body {
+  min-height: 100vh;
   font-size: 16px;
-  background-color: #FAFAFA; }
+  background-color: #FAFAFA;
+  color: #212121; }
+
+* {
+  transition: all .2s ease-in-out; }
+
+/*---------------------------------*/
+/*------------ FONTS --------------*/
+/*---------------------------------*/
+body {
+  font-family: 'Open Sans', sans-serif; }
+
+h1 {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 500;
+  font-size: 2.5rem;
+  margin-bottom: 1.5rem; }
+
+p {
+  margin-bottom: 1rem; }
+
+a.link {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 700;
+  text-decoration: none;
+  color: #03A9F4; }
+  a.link:hover {
+    color: #02638f; }
+
+.button {
+  color: #FAFAFA;
+  border: 2px solid #03A9F4;
+  border-radius: 100px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  background-color: #03A9F4;
+  transition: .2s ease-in-out;
+  padding: .6rem 2.2rem;
+  font-size: 1rem;
+  text-decoration: none;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 700;
+  margin: .5rem 0;
+  box-shadow: 0px 12px 30px -6px rgba(3, 171, 244, 0.61);
+  cursor: pointer; }
+  .button:hover {
+    background: #FAFAFA;
+    color: #03A9F4; }
+
+.main-container {
+  display: flex;
+  align-items: center;
+  justify-content: center; }
+  .main-container .content-box {
+    background: #FAFAFA;
+    display: inline-block;
+    padding: 1rem;
+    box-shadow: 0 15px 20px rgba(0, 0, 0, 0.2); }
+
+.auth {
+  min-height: 100vh;
+  min-width: 100vw;
+  background: linear-gradient(217deg, rgba(3, 171, 244, 0.8), rgba(3, 171, 244, 0) 70.71%), linear-gradient(127deg, rgba(48, 235, 178, 0.8), rgba(48, 235, 178, 0) 70.71%), linear-gradient(336deg, rgba(249, 248, 113, 0.8), rgba(249, 248, 113, 0) 70.71%); }
+  .auth .content-box {
+    min-width: 15rem;
+    min-height: 15rem;
+    border-radius: 30px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center; }
+    .auth .content-box form {
+      display: flex;
+      flex-direction: column; }
+      .auth .content-box form button {
+        width: fit-content;
+        margin: .7rem auto;
+        margin-bottom: 1.2rem; }
+      .auth .content-box form label {
+        margin-bottom: .5rem; }
+      .auth .content-box form input {
+        margin-bottom: 1rem;
+        border-radius: 3px 3px 3px 3px;
+        overflow: hidden;
+        border-width: 0px 0px 2px 0px;
+        border-top-style: none;
+        border-right-style: none;
+        border-left-style: none;
+        border-color: transparent transparent #e7e7e7 transparent;
+        border-style: solid;
+        background: #FAFAFA;
+        transition: all .2s ease-in-out;
+        padding: .7rem;
+        font-size: .9rem; }
+        .auth .content-box form input:focus {
+          border-color: transparent transparent #03A9F4 transparent;
+          outline: none; }
 
 /*# sourceMappingURL=style.css.map */

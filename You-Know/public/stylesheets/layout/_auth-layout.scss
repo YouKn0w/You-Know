@@ -1,0 +1,55 @@
+.auth {
+  min-height: 100vh;
+  min-width: 100vw;
+  background: linear-gradient(217deg, rgba(3, 171, 244,.8), rgba(3, 171, 244,0) 70.71%),
+            linear-gradient(127deg, rgba(48, 235, 178,.8), rgba(48, 235, 178,0) 70.71%),
+            linear-gradient(336deg, rgba(249, 248, 113,.8), rgba(249, 248, 113,0) 70.71%);
+
+
+  .content-box {
+    min-width: 15rem;
+    min-height: 15rem;
+    border-radius: 30px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    form {
+      display: flex;
+      flex-direction: column;
+
+      button {
+        width: fit-content;
+        margin: .7rem auto;
+        margin-bottom: 1.2rem;
+      }
+
+      label {
+        margin-bottom: .5rem;
+      }
+
+      input {
+        margin-bottom: 1rem;
+        border-radius: 3px 3px 3px 3px;
+        overflow: hidden;
+        border-width: 0px 0px 2px 0px;
+        border-top-style: none;
+        border-right-style: none;
+        border-left-style: none;
+        border-color: transparent transparent $gray transparent;
+        border-style: solid;
+        background: $white;
+        transition: all .2s ease-in-out;
+        padding: .7rem;
+        font-size: .9rem;
+
+        &:focus {
+          border-color: transparent transparent $blue-button transparent;
+          outline: none;
+        }
+      }
+    }
+  }
+}

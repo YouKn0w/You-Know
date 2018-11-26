@@ -1,0 +1,12 @@
+.main-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .content-box {
+    background: $white;
+    display: inline-block;
+    padding: 1rem;
+    @include box-shadow;
+  }
+}
