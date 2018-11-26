@@ -2,6 +2,7 @@ const express = require("express");
 const passport = require('passport');
 const { ensureLoggedIn, ensureLoggedOut } = require('connect-ensure-login');
 const transporter = require('../mail/transporter');
+const uploadCloud = require('../config/cloudinary');
 const router = express.Router();
 const User = require("../models/User");
 
@@ -25,15 +26,6 @@ router.get("/signup", (req, res, next) => {
   res.render("auth/signup");
 });
 
-router.get("/main", (req, res, next) => {
-  res.render("auth/main");
-});
-
-router.get("/profile", ensureLoggedIn("/login"), (req, res, next) => {
-  user = req.user
-  res.render("auth/profile", { user });
-});
-
 router.get("/confirm/:confirmCode", (req, res, next) => {
   User.findOneAndUpdate({ confirmationCode: req.params.confirmCode }, { $set: { status: "Active" } }, { new: true })
     .then(() => {
@@ -42,7 +34,7 @@ router.get("/confirm/:confirmCode", (req, res, next) => {
     .catch(err => console.log(err));
 });
 
-router.post("/signup", (req, res, next) => {
+router.post("/signup", uploadCloud.single('photo'), (req, res, next) => {
   const characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
   let token = '';
   for (let i = 0; i < 25; i++) {
@@ -50,7 +42,11 @@ router.post("/signup", (req, res, next) => {
   }
   const username = req.body.username;
   const password = req.body.password;
+  const confirmPass = req.body.password;
   const email = req.body.email;
+
+  const imagePath = (req.file === undefined) ? null : req.file.url;
+  
   const confirmationCode = token;
   if (username === "") {
     res.render("auth/signup", { message: "Indicate an username" });
@@ -59,6 +55,9 @@ router.post("/signup", (req, res, next) => {
 
   if (password === "") {
     res.render("auth/signup", { message: "Indicate a password" });
+    return;
+  } else if (password === confirmPass) {
+    res.render("auth/signup", { message: "Confirm your password" });
     return;
   }
 
@@ -87,6 +86,7 @@ router.post("/signup", (req, res, next) => {
         username,
         password: hashPass,
         email,
+        imagePath,
         confirmationCode
       });
 
@@ -111,9 +111,14 @@ router.post("/signup", (req, res, next) => {
     })
 });
 
-router.get("/logout", (req, res) => {
-  req.logout();
-  res.redirect("/");
+router.get("/logout", ensureLoggedIn("/login"), (req, res) => {
+  user = req.user
+  if (user.status !== "Active") {
+    res.redirect("/login");
+  } else {
+    req.logout();
+    res.redirect("/");
+  }
 });
 
 module.exports = router;
