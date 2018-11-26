@@ -1,16 +1,21 @@
 <div class="auth main-container">
   <div class="content-box">
     <h1>Signup</h1>
+
+    <form action="/signup" method="POST" id="form-container" enctype="multipart/form-data">
+
       {{#if message }}
       <div class="error-message">{{ message }}</div>
       {{/if}}
-
-    <form action="/signup" method="POST" id="form-container" enctype="multipart/form-data">
+      
       <label for="username">Username</label>
       <input id="username" type="text" name="username" placeholder="Your username">
 
       <label for="password">Password</label>
       <input id="password" type="password" name="password" placeholder="Your password">
+
+      <label for="confirm-password">Confirm password</label>
+      <input id="confirm-password" type="password" name="confirm-password" placeholder="Confirm your password">
 
       <label for="email">Email</label>
       <input id="email" type="email" name="email" placeholder="Your email">

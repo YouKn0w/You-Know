@@ -5,10 +5,12 @@ body {
   background-color: $white;
   color: $black;
 
+  overflow-x: hidden;
 }
 
 * {
   transition: all .2s ease-in-out;
+  box-sizing: border-box;
 }
 
 /*---------------------------------*/
