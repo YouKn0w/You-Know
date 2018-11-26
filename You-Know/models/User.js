@@ -21,6 +21,7 @@ const userSchema = new Schema({
     type: String,
     unique: true
   },
+  gameId: mongoose.Types.ObjectId,
   points: Number,
   stadistics: {
     general: {
