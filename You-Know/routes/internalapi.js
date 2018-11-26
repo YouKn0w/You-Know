@@ -11,4 +11,11 @@ router.get('/getcategories', ensureLoggedIn("/login"), (req, res, next) => {
     .catch(err => console.log(err))
 });
 
+router.post('/getquestions', ensureLoggedIn("/login"), (req, res, next) => {
+  difficulty = req.body.difficulty
+  rounds = req.body.rounds
+  categoryId = req.body.categoryId
+  
+});
+
 module.exports = router;

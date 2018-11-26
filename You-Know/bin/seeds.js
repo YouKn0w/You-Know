@@ -94,12 +94,32 @@ const users = [
 
 const categories = [
   {
+    name: "any",
+    categoryApiId: [9, 28, 10, 11, 12, 13, 14, 15, 16, 26, 29, 31, 32, 17, 18, 19, 30, 27, 25, 23, 22, 24, 20, 21]
+  },
+  {
     name: "general",
     categoryApiId: [9, 28]
   },
   {
+    name: "entertainment",
+    categoryApiId: [10, 11, 12, 13, 14, 15, 16, 26, 29, 31, 32]
+  },
+  {
+    name: "science",
+    categoryApiId: [17, 18, 19, 30, 27]
+  },
+  {
     name: "art",
     categoryApiId: [25]
+  },
+  {
+    name: "historyAndGeography",
+    categoryApiId: [23, 22, 24, 20]
+  },
+  {
+    name: "sports",
+    categoryApiId: [21]
   }
 ]
 
