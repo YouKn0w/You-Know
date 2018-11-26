@@ -157,5 +157,10 @@ a.link {
         .auth .content-box form input:focus {
           border-color: transparent transparent #03A9F4 transparent;
           outline: none; }
+      .auth .content-box form .error-message {
+        font-family: 'Open Sans', sans-serif;
+        font-weight: 700;
+        color: #C62828;
+        margin-bottom: 1rem; }
 
 /*# sourceMappingURL=style.css.map */
