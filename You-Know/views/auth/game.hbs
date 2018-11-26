@@ -1,0 +1,35 @@
+<div class="auth main-container">
+  <div class="content-box">
+    <h1>Game</h1>
+
+    <form id="new-game">
+      <label for="difficulty">Difficulty</label>
+      <fieldset>
+        <input type="radio" name="difficulty" value="any" checked>Any
+        <input type="radio" name="difficulty" value="easy">Easy
+        <input type="radio" name="difficulty" value="medium">Medium
+        <input type="radio" name="difficulty" value="hard">Hard
+      </fieldset>
+
+      <label for="rounds">Rounds</label>
+      <fieldset>
+        <input type="radio" name="rounds" value="10" checked>10
+        <input type="radio" name="rounds" value="30">30
+        <input type="radio" name="rounds" value="50">50
+      </fieldset>
+
+      <label for="category">Category</label>
+      <select name="category" id="category">
+        {{!-- <option value="any">Any</option> --}}
+      </select>
+
+      <button type="submit" class="button">New Game</button>
+    </form>
+
+
+    <p><a class="link" href="/main">Back to home</a></p>
+  </div>
+</div>
+
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script src="javascripts/newgame.js"></script>

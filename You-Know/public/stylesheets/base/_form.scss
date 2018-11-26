@@ -1,0 +1,41 @@
+form {
+  display: flex;
+  flex-direction: column;
+
+  button {
+    width: fit-content;
+    margin: .7rem auto;
+    margin-bottom: 1.2rem;
+  }
+
+  label {
+    margin-bottom: .5rem;
+  }
+
+  input {
+    margin-bottom: 1rem;
+    border-radius: 3px 3px 3px 3px;
+    overflow: hidden;
+    border-width: 0px 0px 2px 0px;
+    border-top-style: none;
+    border-right-style: none;
+    border-left-style: none;
+    border-color: transparent transparent $gray transparent;
+    border-style: solid;
+    background: $white;
+    transition: all .2s ease-in-out;
+    padding: .7rem;
+    font-size: .9rem;
+
+    &:focus {
+      border-color: transparent transparent $blue-button transparent;
+      outline: none;
+    }
+  }
+
+  .error-message {
+    @include open-sans-bold;
+    color: $error-msg;
+    margin-bottom: 1rem;
+  }
+}
