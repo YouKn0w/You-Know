@@ -18,9 +18,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const difficulty = document.querySelector('input[name="difficulty"]:checked').value;
     const rounds = document.querySelector('input[name="rounds"]:checked').value;
-    const categoryid = document.getElementById("category").value;
+    const categoryId = document.getElementById("category").value;
 
-    const config = {difficulty, rounds, categoryid};
+    const config = {difficulty, rounds, categoryId};
     
     console.log(config)
 

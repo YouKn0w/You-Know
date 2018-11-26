@@ -3,6 +3,9 @@ const { ensureLoggedIn, ensureLoggedOut } = require('connect-ensure-login');
 const router = express.Router();
 const Category = require("../models/Category");
 
+const axios = require('axios');
+const lodash = require('lodash');
+
 router.get('/getcategories', ensureLoggedIn("/login"), (req, res, next) => {
   Category.find({}, "name")
     .then((categories) => {
@@ -12,10 +15,57 @@ router.get('/getcategories', ensureLoggedIn("/login"), (req, res, next) => {
 });
 
 router.post('/getquestions', ensureLoggedIn("/login"), (req, res, next) => {
-  difficulty = req.body.difficulty
-  rounds = req.body.rounds
-  categoryId = req.body.categoryId
+  difficulty = (req.body.difficulty === 'any') ? '' : `&difficulty=${req.body.difficulty}`;
+  rounds = req.body.rounds;
+  categoryId = req.body.categoryId;
+  //console.log(req.body);
+
+  const urlBase = 'https://opentdb.com/api.php?';
+
   
+
+  Category.findById(categoryId)
+    .then(result => {
+      if (result.name !== 'any') {
+        const apiIds = result.categoryApiId;
+        let typeQuestions = [];
+  
+        for (let i = 0; i < rounds; i++) {
+  
+          typeQuestions.push(apiIds[Math.floor(Math.random() * apiIds.length)])
+        }
+  
+        typeQuestions = lodash.groupBy(typeQuestions);
+
+        let petitions = [];
+
+        for (let key in typeQuestions) {
+          const url = `${urlBase}amount=${typeQuestions[key].length}&category=${typeQuestions[key][0]}${difficulty}`;
+          petitions.push(axios.get(url))
+        }
+
+        let questions = [];
+
+        axios.all(petitions)
+          .then(result => {
+            result.forEach(element =>{
+
+              element.data.results.forEach(element => {
+                questions.push(element);
+              })
+            })
+
+            questions = lodash.shuffle(questions);
+
+            res.json({questions});
+          })
+          .catch(err => console.log('Error: ', err))
+      } else {
+        console.log('Any')
+      }
+    })
+
+
 });
 
 module.exports = router;

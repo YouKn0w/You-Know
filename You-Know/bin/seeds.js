@@ -99,7 +99,7 @@ const categories = [
   },
   {
     name: "general",
-    categoryApiId: [9, 28]
+    categoryApiId: [9]
   },
   {
     name: "entertainment",
@@ -107,7 +107,7 @@ const categories = [
   },
   {
     name: "science",
-    categoryApiId: [17, 18, 19, 30, 27]
+    categoryApiId: [17, 18, 19, 30, 27, 28]
   },
   {
     name: "art",
