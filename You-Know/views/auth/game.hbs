@@ -5,14 +5,21 @@
     <form id="new-game">
       <label for="difficulty">Difficulty</label>
       <fieldset>
-        <input type="radio" name="difficulty" id="any" checked>Any
-        <input type="radio" name="difficulty" id="easy">Easy
-        <input type="radio" name="difficulty" id="medium">Medium
-        <input type="radio" name="difficulty" id="hard">Hard
+        <input type="radio" name="difficulty" value="any" checked>Any
+        <input type="radio" name="difficulty" value="easy">Easy
+        <input type="radio" name="difficulty" value="medium">Medium
+        <input type="radio" name="difficulty" value="hard">Hard
+      </fieldset>
+
+      <label for="rounds">Rounds</label>
+      <fieldset>
+        <input type="radio" name="rounds" value="10" checked>10
+        <input type="radio" name="rounds" value="30">30
+        <input type="radio" name="rounds" value="50">50
       </fieldset>
 
       <label for="category">Category</label>
-      <select name="category">
+      <select name="category" id="category">
         {{!-- <option value="any">Any</option> --}}
       </select>
 

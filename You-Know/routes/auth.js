@@ -14,7 +14,7 @@ router.get('/', ensureLoggedOut("/main"), (req, res, next) => {
   res.render('index');
 });
 
-router.get("/login", (req, res, next) => {
+router.get("/login", (req, res, next) => { 
   res.render("auth/login", { "message": req.flash("error") });
 });
 
