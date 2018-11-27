@@ -20,6 +20,7 @@
     "express": "^4.16.3",
     "express-session": "^1.15.6",
     "hbs": "^4.0.1",
+    "jdenticon": "^2.1.0",
     "mongoose": "^5.2.10",
     "morgan": "^1.9.0",
     "multer": "^1.4.1",
