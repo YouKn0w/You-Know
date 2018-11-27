@@ -8,4 +8,7 @@
 // Layout
 @import "layout/_general-layout";
 @import "layout/_auth-layout";
-@import "layout/_game-layout"
+@import "layout/_game-layout";
+
+// Modules
+@import "modules/_box-rotate.scss";

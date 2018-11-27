@@ -169,4 +169,11 @@ form {
     justify-content: center;
     align-items: center; }
 
+.flip {
+  backface-visibility: hidden; }
+  .flip.rotatingPositive {
+    transform: rotateY(180deg); }
+  .flip.rotatingNegative {
+    transform: rotateY(0deg); }
+
 /*# sourceMappingURL=style.css.map */

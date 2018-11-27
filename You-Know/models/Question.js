@@ -3,8 +3,7 @@ const Schema = mongoose.Schema;
 
 const questionSchema = new Schema({
   category: {
-    type: String,
-    enum: ["ironhack"]
+    type: String
   },
   type: {
     type: String,
@@ -16,7 +15,6 @@ const questionSchema = new Schema({
   },
   question: {
     type: String,
-    unique: true,
   },
   correct_answer: {
     type: String,

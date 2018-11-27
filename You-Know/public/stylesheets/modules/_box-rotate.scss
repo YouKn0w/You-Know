@@ -1,0 +1,12 @@
+.flip {
+	backface-visibility: hidden;
+
+	&.rotatingPositive {
+		transform: rotateY(180deg)
+	}
+
+	&.rotatingNegative {
+		transform: rotateY(0deg);
+	}
+}
+
