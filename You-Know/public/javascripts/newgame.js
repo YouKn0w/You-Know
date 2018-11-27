@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
 
-  axios.get("http://localhost:3000/getcategories")
+  axios.get("/getcategories")
     .then(categories => {
       const categorySelect = document.getElementById("category");
 
@@ -21,16 +21,14 @@ document.addEventListener('DOMContentLoaded', () => {
     const rounds = document.querySelector('input[name="rounds"]:checked').value;
     const categoryId = document.getElementById("category").value;
 
-    const config = {difficulty, rounds, categoryId};
-    
+    const config = { difficulty, rounds, categoryId };
+
     console.log(config)
 
-    axios.post("http://localhost:3000/getquestions", config)
+    axios.post("/getquestions", config)
       .then(questions => {
-        console.log(questions)
-        console.log(questions.data.results.length)
         if (!questions.data.results.length) {
-          document.querySelector('.error-message').innerHTML = "No se han encontrado preguntas";
+          document.querySelector('.error-message').innerHTML = "Cant find questions";
         } else if (questions.data.message === undefined) {
           console.log(questions)
         } else {
@@ -38,9 +36,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
       })
       .catch(err => console.log("Error: ", err))
-
-
-
   })
 
 }, false);
