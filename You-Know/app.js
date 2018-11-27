@@ -86,5 +86,7 @@ app.use('/', internalApiRoutes);
 const getGameRoutes = require('./routes/getgame');
 app.use('/', getGameRoutes);
       
+const postGame = require('./routes/postgame');
+app.use('/', postGame);
 
 module.exports = app;

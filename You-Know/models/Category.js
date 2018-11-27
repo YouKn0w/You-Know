@@ -3,7 +3,8 @@ const Schema = mongoose.Schema;
 
 const categorySchema = new Schema({
   name: String,
-  categoryApiId: Array
+  categoryApiId: Array,
+  categoryApiName: Array
 }, {
     timestamps: {
       createdAt: 'created_at',
