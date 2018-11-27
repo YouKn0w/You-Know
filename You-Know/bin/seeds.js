@@ -99,27 +99,33 @@ const categories = [
   },
   {
     name: "general",
-    categoryApiId: [9]
+    categoryApiId: [9], 
+    categoryApiName: ['General Knowledge']
   },
   {
     name: "entertainment",
-    categoryApiId: [10, 11, 12, 13, 14, 15, 16, 26, 29, 31, 32]
+    categoryApiId: [10, 11, 12, 13, 14, 15, 16, 26, 29, 31, 32], 
+    categoryApiName: ['Entertainment: Books', 'Entertainment: Film', 'Entertainment: Music', 'Entertainment: Musicals & Theatres', 'Entertainment: Television', 'Entertainment: Video Games', 'Entertainment: Board Games', 'Celebrities', 'Entertainment: Comics', 'Entertainment: Japanese Anime & Manga', 'Entertainment: Cartoon & Animations']
   },
   {
     name: "science",
-    categoryApiId: [17, 18, 19, 30, 27, 28]
+    categoryApiId: [17, 18, 19, 30, 27, 28], 
+    categoryApiName: ['Science & Nature', 'Science: Computers', 'Science: Mathematics', 'Science: Gadgets', 'Animals', 'Vehicles']
   },
   {
     name: "art",
-    categoryApiId: [25]
+    categoryApiId: [25], 
+    categoryApiName: ['Art']
   },
   {
     name: "historyAndGeography",
-    categoryApiId: [23, 22, 24, 20]
+    categoryApiId: [23, 22, 24, 20], 
+    categoryApiName: ['History', 'Geography', 'Politics', 'Mythology']
   },
   {
     name: "sports",
-    categoryApiId: [21]
+    categoryApiId: [21], 
+    categoryApiName: ['Sports']
   }
 ]
 
