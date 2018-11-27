@@ -129,7 +129,7 @@ router.post("/signup", uploadCloud.single('photo'), (req, res, next) => {
                 text: 'Welcome to You💡Know',
                 html: `<p>Welcome to You💡Know</p>
           <p>Your username is: ${username}</p>
-          <a href="http://localhost:3000/confirm/${confirmationCode}">Confirm your email here, for activate your account & can access in our WebSite!<a>
+          <a href="https://youkn0w.herokuapp.com/confirm/${confirmationCode}">Confirm your email here, for activate your account & can access in our WebSite!<a>
           `,
               })
                 .then(() => res.redirect("/login"))
