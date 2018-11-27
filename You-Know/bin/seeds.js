@@ -5,7 +5,7 @@ const User = require('../models/User');
 const Category = require('../models/Category');
 const Game = require('../models/Game');
 const Question = require('../models/Question');
-mongoose.connect(`mongodb://${process.env.DB}`);
+mongoose.connect(`${process.env.DB}`);
 
 const passwords = ["y", "z"];
 const saltRounds = 10;
