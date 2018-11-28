@@ -87,9 +87,6 @@ app.use('/', authRoutes);
 const privateRoutes = require('./routes/private');
 app.use('/', privateRoutes);
 
-const internalApiRoutes = require('./routes/internalapi');
-app.use('/', internalApiRoutes);
-
 const getGameRoutes = require('./routes/getgame');
 app.use('/', getGameRoutes);
       

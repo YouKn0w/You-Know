@@ -3,6 +3,8 @@ const { ensureLoggedIn, ensureLoggedOut } = require('connect-ensure-login');
 const router = express.Router();
 const User = require("../models/User");
 const uploadCloud = require('../config/cloudinary');
+const bcrypt = require("bcrypt");
+const bcryptSalt = 10;
 
 router.get('/profile/:userId', (req, res, next) => {
   User.findById(req.params.userId, ["username", "points", "imagePath", "stadistics"])
@@ -15,7 +17,14 @@ router.get('/profile/:userId', (req, res, next) => {
               position = index + 1
             }
           })
-          res.render("auth/profile", { user, position })
+          console.log(req.user.id)
+          console.log(req.params.userId)
+          if (req.user.id === req.params.userId) {
+            const owner = "owner"
+            res.render("auth/profile", { user, position, owner })
+          } else {
+            res.render("auth/profile", { user, position })
+          }
         })
         .catch(err => res.json(err))
     })
@@ -31,17 +40,50 @@ router.get('/editprofile/:userId', (req, res, next) => {
 })
 
 router.post('/editprofile/:userId', uploadCloud.single('photo'), (req, res, next) => {
+  const user = req.user;
+  const email = req.body.email
+  const password = req.body.password
+  const confirmpassword = req.body.confirmpassword
+
+  const salt = bcrypt.genSaltSync(bcryptSalt);
+  const hashPass = bcrypt.hashSync(password, salt);
+
   userEdited = {}
-  userEdited.password = req.body.password;
-  userEdited.email = req.body.email;
+
   if (req.file === undefined) {
-    userEdited.imagePath = req.user.imagePath
+    userEdited.imagePath = user.imagePath
   } else {
     userEdited.imagePath = req.file.url
   }
-  User.findByIdAndUpdate(req.params.userId, userEdited)
-    .then(user => {
-      res.redirect(`/profile/${user.id}`)
+
+  if (password === "") {
+    userEdited.password = user.password
+  } else {
+    userEdited.password = hashPass;
+  }
+  if (password !== confirmpassword) {
+    res.render("auth/editprofile", { message: "Confirm your password", user });
+    return;
+  }
+
+  if (email === "") {
+    userEdited.email = user.email;
+  } else {
+    userEdited.email = email;
+  }
+
+  User.findOne({ email }, "email", (err, userr) => {
+    if (userr !== null) {
+      res.render("auth/editprofile", { message: "The email already exists", user });
+      return;
+    }
+  })
+    .then(() => {
+      User.findByIdAndUpdate(req.params.userId, userEdited)
+        .then(user => {
+          res.redirect(`/profile/${user.id}`)
+        })
+        .catch(err => res.json(err))
     })
     .catch(err => res.json(err))
 })
