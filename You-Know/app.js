@@ -36,6 +36,7 @@ app.use(cookieParser());
 
 // Express View engine setup
 
+
 app.use(require('node-sass-middleware')({
   src:  path.join(__dirname, 'public'),
   dest: path.join(__dirname, 'public'),
@@ -48,6 +49,12 @@ app.set('view engine', 'hbs');
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(favicon(path.join(__dirname, 'public', 'images', 'favicon.ico')));
 
+
+
+hbs.registerHelper("inc", function(value, options)
+{
+    return parseInt(value) + 1;
+});
 
 hbs.registerHelper('ifUndefined', (value, options) => {
   if (arguments.length < 2)

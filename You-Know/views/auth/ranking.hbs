@@ -1,8 +1,9 @@
 <div class="auth main-container">
   <div class="content-box">
     <h1>Ranking</h1>
-
-
+    {{#each user }}
+    <a href="/profile/{{this.id}}"><div>{{inc @index}} {{this.position}}<img src="{{this.imagePath}}"> {{this.username}} {{this.points}}</div></a>
+    {{/each}}
     <p><a class="link" href="/main">Back to home</a></p>
   </div>
 </div>
