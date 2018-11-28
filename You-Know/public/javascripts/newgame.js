@@ -1,29 +1,8 @@
 document.addEventListener('DOMContentLoaded', () => {
   const card = document.querySelector('.content-box');
+  let gameId;
 
   let questions = [];
-
-  // var c = 0;
-  // var time = 50 //ms per step
-  // var steps = 4 //pasos en tu animación
-
-  // var intervalID = setInterval(function () {
-  //   c++;
-  //   console.log(c);
-
-  //   if (c === 1)	addClass(document.querySelector('.content-box'), 'rotatingPositive')
-  //   if (c === 2)	{ // Cambio DOM
-      
-  //   }
-  //   if (c === 3)	addClass(document.querySelector('.content-box'), 'rotatingNegative')
-  //   //if (c === 4)	//eliminación de clase css sobrante o innecesaria
-
-  //   console.log(c)
-
-  //   if (c === 4)	clearInterval(intervalID)
-  // }, steps * time)
-
-
 
   axios.get("/getcategories")
     .then(categories => {
@@ -48,22 +27,58 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const config = { difficulty, rounds, categoryId };
 
-    console.log(config)
+    //console.log(config)
 
-    axios.post("/getquestions", config)
+    axios.post("/creategame", config)
       .then(response => {
-        
+        gameId = response.data.created._id;
+        return axios.get(`/question/${response.data.created.category}/${response.data.created.difficulty}`)
+
+      })
+      .then(question => {
+        printQuestion(question.data);
       })
       .catch(err => console.log("Error: ", err))
   })
 
-  function initGame(questions) {
+  function printQuestion(question) {
+    const html = generateHTML(question);
+
     removeClass(card, 'rotatingNegative');
     addClass(card, 'rotatingPositive');
 
-    round();
+    setTimeout(() => {
+      card.innerHTML = html;
+      addClass(card, 'rotatingNegative');
+      removeClass(card, 'rotatingPositive');
+
+      createEvents();
+
+    }, 200);
+
+
   }
 
+  function round() {
+    console.log('ronda');
+    axios.get(`/game/${gameId}`)
+      .then(game => {
+        console.log(game.data)
+        if (game.data.numberQuestions === game.data.questionsAnswered) {
+          gameFinish();
+        } else {
+          axios.get(`/question/${game.data.category}/${game.data.difficulty}`)
+            .then(question => {
+              printQuestion(question.data);
+              return;
+            })
+        }
+
+      })
+      
+  }
+
+  
   function addClass(el, className) {
     if (el.classList)
       el.classList.add(className);
@@ -79,35 +94,95 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   function generateHTML(question) {
+    console.log(question);
     let html = `
-      <div class="question">
+      <div class="question" data-id="${question['_id']}">
         <p class="title">${question.question}</p>
         <div class="responses">
     `;
-
-    switch (question.type) {
-      case 'multiple':
-        html += 'multiple';
-        break;
-
-      case 'boolean':
-        html += 'boolean';
-        break;
-    }
+    question.answers.forEach(answer => {
+      html += `<button data-id="${answer['_id']}">${answer.value}</button>`;
+    })
+    
 
     html += `</div></div>`;
 
     return html;
   }
 
-  function round() {
+
+  function createEvents() {
+    document.querySelectorAll('.responses button').forEach(button => {
+      button.onclick = checkQuestion;
+    })
+  
+    function checkQuestion(e) {
+      const config = {
+        answerId: e.target.getAttribute('data-id'), 
+        questionId: document.querySelector('.question').getAttribute('data-id'), 
+        answer: e.target.innerHTML, 
+        gameId
+      };
+
+      e.target.removeEventListener(e.type, arguments.callee);
+
+
+      axios.post('/checkquestion', config)
+        .then(result => {
+
+          console.log('result', result.data.result);
+          if (result.data.result) {
+            correct();
+          } else {
+            incorrect();
+          }
+        })
+    }
+
+  }
+
+  function correct() {
+    removeClass(card, 'rotatingNegative');
+    addClass(card, 'rotatingPositive');
+
     setTimeout(() => {
-      console.log(questions)
-      card.innerHTML = generateHTML(questions[0]);
+      card.innerHTML = "<p>Correct!</p>";
       addClass(card, 'rotatingNegative');
       removeClass(card, 'rotatingPositive');
 
+      setTimeout(() => {
+        round()
+      }, 400);
+
     }, 200);
+  }
+
+  function incorrect() {
+    removeClass(card, 'rotatingNegative');
+    addClass(card, 'rotatingPositive');
+
+    setTimeout(() => {
+      card.innerHTML = "<p>Incorrect!</p>";
+      addClass(card, 'rotatingNegative');
+      removeClass(card, 'rotatingPositive');
+
+      setTimeout(() => {
+        round()
+      }, 400);
+
+    }, 200);
+  }
+
+  function gameFinish() {
+    removeClass(card, 'rotatingNegative');
+    addClass(card, 'rotatingPositive');
+
+    setTimeout(() => {
+      card.innerHTML = "<p>Finished!</p>";
+      addClass(card, 'rotatingNegative');
+      removeClass(card, 'rotatingPositive');
+
+    }, 600);
   }
 
 }, false);

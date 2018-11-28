@@ -6,23 +6,16 @@ const questionSchema = new Schema({
     type: String
   },
   type: {
-    type: String,
-    enum: ["multiple", "boolean"]
+    type: String
   },
   difficulty: {
-    type: String,
-    enum: ["easy", "medium", "hard"]
+    type: String
   },
   question: {
     type: String,
   },
   answers: [{ type : Schema.ObjectId, ref: 'Answer' }]
-}, {
-    timestamps: {
-      createdAt: 'created_at',
-      updatedAt: 'updated_at'
-    }
-  });
+});
 
 const Question = mongoose.model('Question', questionSchema);
 module.exports = Question;

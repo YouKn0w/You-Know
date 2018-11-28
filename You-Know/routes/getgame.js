@@ -44,23 +44,34 @@ router.get('/question/:categoryId/:difficulty', (req, res, next) => {
     .then(result => {
       const urlBase = 'https://opentdb.com/api.php?';
       const difficulty = (req.params.difficulty === 'any') ? '' : `&difficulty=${req.params.difficulty}`;
+      //console.log('category', result.name)
       if (result.name !== 'any') {
-
+        //console.log(result.categoryApiId)
+//
         const apiIds = result.categoryApiId;
 
         let question = apiIds[Math.floor(Math.random() * apiIds.length)]
+        question += '';
 
-        url = `${urlBase}category=${question}&amount=1${difficulty}`;
+        //console.log(typeof question)
 
-      } else {
-        url = `${urlBase}amount=1${difficulty}`;        
-      }
-
-      return axios.get(`${urlBase}amount=1${difficulty}`)
+        url = `${urlBase}amount=1${difficulty}`;   
+        //url = `${urlBase}category=${question}&amount=1${difficulty}`;
+        //console.log(url)
+        return axios.get(url)
         
+      } else {
+        url = `${urlBase}amount=1${difficulty}`;    
+        return axios.get(url)    
+      }
+      
+      console.log(url)
+      //return axios.get(`${urlBase}amount=1${difficulty}`)
+      return axios.get(url)
     })
     .then(result => {
-
+      //console.log('get result')
+      //console.log(result.data)
       let objectAnswers = [
         {
           value: result.data.results[0].correct_answer, 
@@ -77,24 +88,31 @@ router.get('/question/:categoryId/:difficulty', (req, res, next) => {
       questionToMongo = result.data.results[0];
       return Answer.insertMany(objectAnswers);
       
-      
     })
     .then(answers => {
+      //console.log('get answers', answers)
+
       let answersId = answers.map(answer => answer['_id']);
+
+      //console.log(answersId)
 
 
       delete questionToMongo['correct_answer'];
       delete questionToMongo['incorrect_answers'];
       questionToMongo.answers = answersId;
+      questionToMongo.answers = lodash.shuffle(questionToMongo.answers);
 
-      
+      //console.log('questionToMongo', questionToMongo)
+      //res.json({questionToMongo})
       return Question.create(questionToMongo)
     })
-    .then((question) => {
-      return Question.findById(question['_id']).populate({path: 'answers', select: '_id'}).populate({path: 'answers', select: 'value'})
+    .then((questions) => {
+      //console.log('get question')
+      return Question.findById(questions['_id']).populate({path: 'answers', select: '_id'}).populate({path: 'answers', select: 'value'})
 
     })
     .then(result => {
+      //console.log('get result')
       res.json(result)
     })
     .catch(err => console.log)
