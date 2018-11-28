@@ -1,0 +1,28 @@
+<div class="auth main-container">
+  <div class="content-box">
+    <h1>Edit profile</h1>
+
+    <form action="/editprofile/{{user.id}}" method="POST" id="form-container" enctype="multipart/form-data">
+
+      {{#if message }}
+      <div class="error-message">{{ message }}</div>
+      {{/if}}
+
+      <label for="photo">Photo</label>
+      <input type="file" name="photo" id="photo">
+
+      <label for="password">Password</label>
+      <input id="password" type="password" name="password" placeholder="Your password">
+
+      <label for="confirmpassword">Confirm password</label>
+      <input id="confirmpassword" type="password" name="confirmpassword" placeholder="Confirm your password">
+
+      <label for="email">Email</label>
+      <input id="email" type="email" name="email" placeholder="Your email">
+
+      <button class="button">Edit profile</button>
+
+    </form>
+    <p><a class="link" href="/profile/{{user.id}}">Go to profile</a></p>
+  </div>
+</div>
