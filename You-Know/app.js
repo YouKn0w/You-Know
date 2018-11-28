@@ -89,4 +89,7 @@ app.use('/', getGameRoutes);
 const postGame = require('./routes/postgame');
 app.use('/', postGame);
 
+const getUsersRoutes = require('./routes/getusers');
+app.use('/', getUsersRoutes);
+
 module.exports = app;

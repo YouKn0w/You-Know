@@ -2,12 +2,16 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const gameSchema = new Schema({
-  totalQuestions: Number,
-  questions: [{ type : Schema.Types.ObjectId, ref: 'Question' }], 
+  userId: String,
+  category: String,
   difficulty: {
     type: String,
     enum: ["easy", "medium", "hard", "any"]
   },
+  numberQuestions: Number,
+  questionsAnswered: Number,
+  questionsCorrect: Number,
+  questionsFailed: Number,
   points: Number
 }, {
     timestamps: {
