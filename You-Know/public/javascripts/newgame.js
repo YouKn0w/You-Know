@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   let questions = [];
 
-  axios.get("/getcategories")
+  axios.get("/categories")
     .then(categories => {
       const categorySelect = document.getElementById("category");
 
