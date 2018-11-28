@@ -39,11 +39,15 @@ router.get('/editprofile/:userId', ensureLoggedIn("/login"), (req, res, next) =>
   if (user.status !== "Active") {
     res.render("auth/login", { message: "This account isnt Activated" });
   } else {
-    User.findById(req.params.userId)
-      .then(user => {
-        res.render("auth/editprofile", { user })
-      })
-      .catch(err => res.json(err))
+    if (user.id === req.params.userId) {
+      User.findById(req.params.userId)
+        .then(user => {
+          res.render("auth/editprofile", { user })
+        })
+        .catch(err => res.json(err))
+    } else {
+      res.redirect("/ranking")
+    }
   }
 })
 
