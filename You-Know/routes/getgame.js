@@ -4,6 +4,7 @@ const router = express.Router();
 const Category = require("../models/Category");
 const Question = require("../models/Question");
 const Game = require("../models/Game");
+const Answer = require("../models/Answer");
 const axios = require('axios');
 const lodash = require('lodash');
 
@@ -35,15 +36,10 @@ router.get('/game/:gameId', (req, res, next) => {
 });
 
 router.get('/question/:categoryId/:difficulty', (req, res, next) => {
-  // if (!['any', 'easy', 'medium', 'hard'].includes(req.body.difficulty)) {
-  //   res.json({ message: 'Try again' })
-  //   return;
-  // }
+  let url;
+  let questionToMongo;
+  let answers;
 
-  // if (!['10', '30', '50'].includes(req.body.rounds)) {
-  //   res.json({ message: 'Try again' })
-  //   return;
-  // }
   Category.findById(req.params.categoryId)
     .then(result => {
       const urlBase = 'https://opentdb.com/api.php?';
@@ -54,49 +50,54 @@ router.get('/question/:categoryId/:difficulty', (req, res, next) => {
 
         let question = apiIds[Math.floor(Math.random() * apiIds.length)]
 
-        const url = `${urlBase}category=${question}&amount=1${difficulty}`;
+        url = `${urlBase}category=${question}&amount=1${difficulty}`;
 
-
-        axios.get(url)
-          .then(result => {
-            Question.create(result.data.results[0])
-              .then((question) => {
-                let answers = question.incorrect_answers
-                answers.push(question.correct_answer)
-                answers = lodash.shuffle(answers);
-
-                const quest = {
-                  id: question._id,
-                  question: question.question,
-                  answers: answers
-                }
-
-                res.json(quest)
-              })
-              .catch(err => console.log('Error: ', err))
-          })
-          .catch(err => console.log('Error: ', err))
       } else {
-        axios.get(`${urlBase}amount=1${difficulty}`)
-          .then(result => {
-            Question.create(result.data.results[0])
-              .then((question) => {
-                let answers = question.incorrect_answers
-                answers.push(question.correct_answer)
-                answers = lodash.shuffle(answers);
-
-                const quest = {
-                  id: question._id,
-                  question: question.question,
-                  answers: answers
-                }
-
-                res.json(quest)
-              })
-              .catch(err => console.log('Error: ', err))
-          })
+        url = `${urlBase}amount=1${difficulty}`;        
       }
+
+      return axios.get(`${urlBase}amount=1${difficulty}`)
+        
     })
+    .then(result => {
+
+      let objectAnswers = [
+        {
+          value: result.data.results[0].correct_answer, 
+          correct: true
+        }
+      ];
+      result.data.results[0].incorrect_answers.forEach(answer => {
+        objectAnswers.push({
+          value: answer, 
+          correct: false
+        });
+      });
+
+      questionToMongo = result.data.results[0];
+      return Answer.insertMany(objectAnswers);
+      
+      
+    })
+    .then(answers => {
+      let answersId = answers.map(answer => answer['_id']);
+
+
+      delete questionToMongo['correct_answer'];
+      delete questionToMongo['incorrect_answers'];
+      questionToMongo.answers = answersId;
+
+      
+      return Question.create(questionToMongo)
+    })
+    .then((question) => {
+      return Question.findById(question['_id']).populate({path: 'answers', select: '_id'}).populate({path: 'answers', select: 'value'})
+
+    })
+    .then(result => {
+      res.json(result)
+    })
+    .catch(err => console.log)
 })
 
 

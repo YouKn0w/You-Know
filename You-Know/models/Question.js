@@ -16,10 +16,7 @@ const questionSchema = new Schema({
   question: {
     type: String,
   },
-  correct_answer: {
-    type: String,
-  },
-  incorrect_answers: Array
+  answers: [{ type : Schema.ObjectId, ref: 'Answer' }]
 }, {
     timestamps: {
       createdAt: 'created_at',
