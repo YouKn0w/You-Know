@@ -9,13 +9,10 @@ const axios = require('axios');
 const lodash = require('lodash');
 
 router.post('/checkquestion', (req, res, next) => {
-  const questionId = req.body.questionId;
-  const userId = req.body.userId;
-  const answer = req.body.answer;
+  const {questionId,userId,answer} = req.body;
 
   Question.findById(questionId)
     .then(question => {
-
       if (question['correct_answer'] === answer) {
 
         let pointsToAdd;
@@ -31,18 +28,13 @@ router.post('/checkquestion', (req, res, next) => {
             break;
         }
 
-        console.log(pointsToAdd)
-
         return User.findByIdAndUpdate(userId, { $inc: { points: pointsToAdd} })
-          
-
       } else {
         res.json({result: false})
       }
       
     })
     .then(result => {
-      console.log('sumado');
       res.json({result: true, points: pointsToAdd})
     })
     .catch(err => res.json(err))

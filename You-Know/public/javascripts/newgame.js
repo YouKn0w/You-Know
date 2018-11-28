@@ -52,17 +52,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     axios.post("/getquestions", config)
       .then(response => {
-        if (!response.data.results.length) {
-          document.querySelector('.error-message').innerHTML = "Cant find questions";
-        } else if (response.data.message === undefined) {
-          console.log(response.data.results);
-
-          questions = response.data.results;
-
-          initGame();
-        } else {
-          document.querySelector('.error-message').innerHTML = response.data.message;
-        }
+        
       })
       .catch(err => console.log("Error: ", err))
   })
