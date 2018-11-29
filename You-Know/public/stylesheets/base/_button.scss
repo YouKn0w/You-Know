@@ -14,8 +14,26 @@
   box-shadow: 0px 12px 30px -6px $blue-button-rgba;
   cursor: pointer;
 
+  &.simple {
+    background-color: transparent;
+    color: $blue-button;
+
+    &:hover {
+      background-color: $blue-button;
+      color: $white;
+    }
+  }
+
+  &.small {
+    font-size: .7rem;
+    padding: .4rem 1.7rem;
+    box-shadow: 0px 6px 15px -3px $blue-button-rgba;
+  }
+
   &:hover {
     background: $white;
     color: $blue-button;
   }
+
+
 }

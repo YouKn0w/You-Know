@@ -46,8 +46,6 @@ router.get('/question/:categoryId/:difficulty', (req, res, next) => {
       const difficulty = (req.params.difficulty === 'any') ? '' : `&difficulty=${req.params.difficulty}`;
       //console.log('category', result.name)
       if (result.name !== 'any') {
-        //console.log(result.categoryApiId)
-//
         const apiIds = result.categoryApiId;
 
         let question = apiIds[Math.floor(Math.random() * apiIds.length)]
@@ -90,12 +88,7 @@ router.get('/question/:categoryId/:difficulty', (req, res, next) => {
       
     })
     .then(answers => {
-      //console.log('get answers', answers)
-
       let answersId = answers.map(answer => answer['_id']);
-
-      //console.log(answersId)
-
 
       delete questionToMongo['correct_answer'];
       delete questionToMongo['incorrect_answers'];
