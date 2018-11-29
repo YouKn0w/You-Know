@@ -142,7 +142,7 @@ router.post("/signup", uploadCloud.single('photo'), (req, res, next) => {
     }, { public_id: `${username}.png`, folder: 'youknow' })
 });
 
-router.get("/logout", (req, res) => {
+router.get("/logout", ensureLoggedIn("/"), (req, res) => {
   req.logout();
   res.redirect("/");
 });

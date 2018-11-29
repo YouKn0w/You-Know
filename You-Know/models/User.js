@@ -21,35 +21,80 @@ const userSchema = new Schema({
     unique: true
   },
   gameId: mongoose.Types.ObjectId,
-  points: Number,
+  points: {
+    type: Number,
+    default: 0,
+  },
   stadistics: {
     general: {
-      correct: Number,
-      failed: Number
+      correct: {
+        type: Number,
+        default: 0
+      },
+      failed: {
+        type: Number,
+        default: 0
+      }
     },
     entertainment: {
-      correct: Number,
-      failed: Number
+      correct: {
+        type: Number,
+        default: 0
+      },
+      failed: {
+        type: Number,
+        default: 0
+      }
     },
     science: {
-      correct: Number,
-      failed: Number
+      correct: {
+        type: Number,
+        default: 0
+      },
+      failed: {
+        type: Number,
+        default: 0
+      }
     },
     art: {
-      correct: Number,
-      failed: Number
+      correct: {
+        type: Number,
+        default: 0
+      },
+      failed: {
+        type: Number,
+        default: 0
+      }
     },
     historyAndGeography: {
-      correct: Number,
-      failed: Number
+      correct: {
+        type: Number,
+        default: 0
+      },
+      failed: {
+        type: Number,
+        default: 0
+      }
     },
     sports: {
-      correct: Number,
-      failed: Number
+      correct: {
+        type: Number,
+        default: 0
+      },
+      failed: {
+        type: Number,
+        default: 0
+      }
     },
     ironhack: {
-      correct: Number,
-      failed: Number
+      correct: {
+        type: Number,
+        default: 0
+      },
+      failed: {
+        type: Number,
+        default: 0
+      }
     }
   }
 }, {
