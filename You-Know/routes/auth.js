@@ -29,7 +29,7 @@ router.get('/', ensureLoggedOut("/main"), (req, res, next) => {
   res.render('index');
 });
 
-router.get("/login", ensureLoggedOut("/main"), (req, res, next) => {
+router.get("/login", (req, res, next) => {
   res.render("auth/login", { "message": req.flash("error") });
 });
 
@@ -40,11 +40,11 @@ router.post("/login", passport.authenticate("local", {
   passReqToCallback: true
 }));
 
-router.get("/signup", ensureLoggedOut("/main"), (req, res, next) => {
+router.get("/signup", (req, res, next) => {
   res.render("auth/signup");
 });
 
-router.get("/confirm/:confirmCode", ensureLoggedOut("/main"), (req, res, next) => {
+router.get("/confirm/:confirmCode", (req, res, next) => {
   User.findOneAndUpdate({ confirmationCode: req.params.confirmCode }, { $set: { status: "Active" } }, { new: true })
     .then(() => {
       res.redirect("/login");
@@ -52,7 +52,7 @@ router.get("/confirm/:confirmCode", ensureLoggedOut("/main"), (req, res, next) =
     .catch(err => console.log(err));
 });
 
-router.post("/signup", ensureLoggedOut("/main"), uploadCloud.single('photo'), (req, res, next) => {
+router.post("/signup", uploadCloud.single('photo'), (req, res, next) => {
   const characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
   let token = '';
   for (let i = 0; i < 25; i++) {
@@ -142,14 +142,9 @@ router.post("/signup", ensureLoggedOut("/main"), uploadCloud.single('photo'), (r
     }, { public_id: `${username}.png`, folder: 'youknow' })
 });
 
-router.get("/logout", ensureLoggedIn("/login"), (req, res) => {
-  user = req.user
-  if (user.status !== "Active") {
-    res.redirect("/login");
-  } else {
-    req.logout();
-    res.redirect("/");
-  }
+router.get("/logout", (req, res) => {
+  req.logout();
+  res.redirect("/");
 });
 
 module.exports = router;
