@@ -9,6 +9,8 @@
 @import "layout/_general-layout";
 @import "layout/_auth-layout";
 @import "layout/_game-layout";
+@import "layout/profile";
 
 // Modules
 @import "modules/_box-rotate.scss";
+@import "modules/graph.scss"

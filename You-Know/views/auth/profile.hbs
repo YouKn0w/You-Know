@@ -1,14 +1,129 @@
 <div class="auth main-container">
-  <div class="content-box">
-    <h1>Profile</h1>
-    {{#if owner}}
-    <a href="/editprofile/{{user.id}}">Edit profile</a>
-    {{/if}}
-    <img src="{{user.imagePath}}">
-    <h3>{{user.username}}</h3>
-    <div>Your position in ranking is: {{position}} with {{user.points}} Points</div>
-    <div>{{user.stadistics}}</div>
+  <div class="content-box profile">
+    <div class="header">
+      <div class="profile-pic">
+        <img src="{{user.imagePath}}">
+      </div>
+      <div class="main-info">
+        <h1>{{user.username}}</h1>
+        <p class="ranking"><span>#{{position}}</span> - {{user.points}} points</p>
+      </div>
+      {{#if owner}}
+        <div class="edit">
+          <a href="/editprofile/{{user.id}}" class="button simple small">Edit profile</a>
+        </div>
+      {{/if}}
+    </div>
+
+    <div class="questions">
+      <div class="col">
+        <p class="quantity">288</p>
+        <p class="type">Total</p>
+      </div>
+      <div class="col">
+        <p class="quantity">88</p>
+        <p class="type">Good</p>
+      </div>
+      <div class="col">
+        <p class="quantity">200</p>
+        <p class="type">Bad</p>
+      </div>
+    </div>
+    
+    <div id="graph">
+
+    </div>
+
+    <div class="categories">
+      <div class="category">
+        <img src="/images/icons/general.svg" alt="General">
+        <p class="title" style="color: #F0D909">General</p>
+        <div class="result">
+          <div class="col">
+            <p class="quantity">4</p>
+            <p class="type">Good</p>
+          </div>
+          <div class="col">
+            <p class="quantity">7</p>
+            <p class="type">Bad</p>
+          </div>
+        </div>
+      </div>
+      <div class="category">
+        <img src="/images/icons/art.svg" alt="Art">
+        <p class="title" style="color: #673AB7">Art</p>
+        <div class="result">
+          <div class="col">
+            <p class="quantity">4</p>
+            <p class="type">Good</p>
+          </div>
+          <div class="col">
+            <p class="quantity">7</p>
+            <p class="type">Bad</p>
+          </div>
+        </div>
+      </div>
+      <div class="category">
+        <img src="/images/icons/entertainment.svg" alt="Entertainment">
+        <p class="title" style="color: #F44336">Entertainment</p>
+        <div class="result">
+          <div class="col">
+            <p class="quantity">14</p>
+            <p class="type">Good</p>
+          </div>
+          <div class="col">
+            <p class="quantity">71</p>
+            <p class="type">Bad</p>
+          </div>
+        </div>
+      </div>
+      <div class="category">
+        <img src="/images/icons/historyandgeography.svg" alt="History&Geography">
+        <p class="title" style="color: #03A9F4">History & Geography</p>
+        <div class="result">
+          <div class="col">
+            <p class="quantity">6</p>
+            <p class="type">Good</p>
+          </div>
+          <div class="col">
+            <p class="quantity">17</p>
+            <p class="type">Bad</p>
+          </div>
+        </div>
+      </div>
+      <div class="category">
+        <img src="/images/icons/scienceandnature.svg" alt="Science&Nature">
+        <p class="title" style="color: #4CAF50">Science & Nature</p>
+        <div class="result">
+          <div class="col">
+            <p class="quantity">6</p>
+            <p class="type">Good</p>
+          </div>
+          <div class="col">
+            <p class="quantity">1</p>
+            <p class="type">Bad</p>
+          </div>
+        </div>
+      </div>
+      <div class="category">
+        <img src="/images/icons/sports.svg" alt="Sports">
+        <p class="title" style="color: #FF9800">Sports</p>
+        <div class="result">
+          <div class="col">
+            <p class="quantity">3</p>
+            <p class="type">Good</p>
+          </div>
+          <div class="col">
+            <p class="quantity">23</p>
+            <p class="type">Bad</p>
+          </div>
+        </div>
+      </div>
+    </div>
 
     <p><a class="link" href="/main">Back to home</a></p>
   </div>
 </div>
+<script>const data = {{user.stadistics}}</script>
+<script src="/javascripts/lib/d3.v3.min.js"></script>
+<script src="/javascripts/stadistics.js"></script>
