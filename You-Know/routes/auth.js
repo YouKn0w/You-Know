@@ -89,7 +89,6 @@ router.post("/signup", uploadCloud.single('photo'), (req, res, next) => {
 
       fs.unlink(`${username}.png`, function (err) {
         if (err) throw err;
-        console.log('File deleted!');
       });
 
       const imagePath = (req.file === undefined) ? result.url : req.file.url;
