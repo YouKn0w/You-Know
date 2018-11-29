@@ -10,6 +10,8 @@ const Answer = require("../models/Answer");
 const axios = require('axios');
 const lodash = require('lodash');
 
+let pointsToAdd
+
 router.post("/creategame", (req, res, next) => {
   const userId = req.user._id;
   const category = req.body.categoryId;
@@ -42,7 +44,7 @@ router.post("/creategame", (req, res, next) => {
 
 router.post('/checkquestion', (req, res, next) => {
   const userId = req.user._id;
-  const {questionId,answer, answerId, gameId} = req.body;
+  const { questionId, answer, answerId, gameId } = req.body;
   let category;
 
   //console.log(questionId);
@@ -56,91 +58,90 @@ router.post('/checkquestion', (req, res, next) => {
         //console.log(true)
 
         Question.findById(questionId)
-        .then(question => {
-          //console.log('question', question);
-    
-          let pointsToAdd;
-          switch (question.difficulty) {
-            case 'easy':
-              pointsToAdd = 1;
-              break;
-            case 'medium':
-              pointsToAdd = 2;
-              break;
-            case 'hard':
-              pointsToAdd = 3;
-              break;
-          }
+          .then(question => {
+            //console.log('question', question);
 
-          console.log(question)
-    
-          return User.findByIdAndUpdate(userId, { $inc: { points: pointsToAdd} })
-          
-    
-        })
-        .then(result => {
-          return Game.findByIdAndUpdate(gameId, { $inc: { questionsAnswered: 1, questionsCorrect: 1} })
-        })
-        .then(game => {
-          console.log(game);
+            switch (question.difficulty) {
+              case 'easy':
+                pointsToAdd = 1;
+                break;
+              case 'medium':
+                pointsToAdd = 2;
+                break;
+              case 'hard':
+                pointsToAdd = 3;
+                break;
+            }
 
-          return Question.findById(questionId)
-        })
-        .then(question => {
-          //console.log(question.category);
-          category = getCategoryName(question.category);
-          return User.findById(userId)
-        })
-        .then(user => {
-          console.log(user.stadistics);
+            console.log(question)
 
-          user.stadistics[category].correct++;
+            return User.findByIdAndUpdate(userId, { $inc: { points: pointsToAdd } })
 
-          console.log(user.stadistics);
 
-          user.save(function (err) {
-            res.json({ result: true })
-            return;
-          });
-          
+          })
+          .then(result => {
+            return Game.findByIdAndUpdate(gameId, { $inc: { questionsAnswered: 1, questionsCorrect: 1, points: pointsToAdd } })
+          })
+          .then(game => {
+            console.log(game);
 
-        })
-        .catch(err => console.log)
+            return Question.findById(questionId)
+          })
+          .then(question => {
+            //console.log(question.category);
+            category = getCategoryName(question.category);
+            return User.findById(userId)
+          })
+          .then(user => {
+            console.log(user.stadistics);
+
+            user.stadistics[category].correct++;
+
+            console.log(user.stadistics);
+
+            user.save(function (err) {
+              res.json({ result: true })
+              return;
+            });
+
+
+          })
+          .catch(err => console.log)
 
 
       } else {
         console.log(false)
-        return Game.findByIdAndUpdate(gameId, { $inc: { questionsAnswered: 1, questionsFailed: 1} })
-        .then(game => {
-          console.log(game);
+        return Game.findByIdAndUpdate(gameId, { $inc: { questionsAnswered: 1, questionsFailed: 1 } })
+          .then(game => {
+            console.log(game);
 
-          return Question.findById(questionId)
-        })
-        .then(question => {
-          //console.log(question.category);
-          category = getCategoryName(question.category);
-          return User.findById(userId)
-        })
-        .then(user => {
-          console.log(user.stadistics);
+            return Question.findById(questionId)
+          })
+          .then(question => {
+            //console.log(question.category);
+            category = getCategoryName(question.category);
+            return User.findById(userId)
+          })
+          .then(user => {
+            console.log(user.stadistics);
 
-          user.stadistics[category].failed++;
+            user.stadistics[category].failed++;
 
-          console.log(user.stadistics);
+            console.log(user.stadistics);
 
-          user.save(function (err) {
-            res.json({ result: false })
-            return;
-          });
-          
+            user.save(function (err) {
+              res.json({ result: false })
+              return;
+            });
 
-        })
-        
+
+          })
+
       }
 
       //res.json({answer})
     })
-    
+
     .catch(err => console.log)
 
 
@@ -148,11 +149,11 @@ router.post('/checkquestion', (req, res, next) => {
 
 function getCategoryName(category) {
   const categories = {
-    general: ['General Knowledge'], 
-    entertainment: ['Entertainment: Books', 'Entertainment: Film', 'Entertainment: Music', 'Entertainment: Musicals & Theatres', 'Entertainment: Television', 'Entertainment: Video Games', 'Entertainment: Board Games', 'Celebrities', 'Entertainment: Comics', 'Entertainment: Japanese Anime & Manga', 'Entertainment: Cartoon & Animations'], 
+    general: ['General Knowledge'],
+    entertainment: ['Entertainment: Books', 'Entertainment: Film', 'Entertainment: Music', 'Entertainment: Musicals & Theatres', 'Entertainment: Television', 'Entertainment: Video Games', 'Entertainment: Board Games', 'Celebrities', 'Entertainment: Comics', 'Entertainment: Japanese Anime & Manga', 'Entertainment: Cartoon & Animations'],
     science: ['Science & Nature', 'Science: Computers', 'Science: Mathematics', 'Science: Gadgets', 'Animals', 'Vehicles'],
-    art: ['Art'], 
-    historyAndGeography: ['History', 'Geography', 'Politics', 'Mythology'], 
+    art: ['Art'],
+    historyAndGeography: ['History', 'Geography', 'Politics', 'Mythology'],
     sports: ['Sports']
   }
   let find;
