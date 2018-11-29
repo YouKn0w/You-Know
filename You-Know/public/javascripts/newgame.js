@@ -105,7 +105,7 @@ document.addEventListener('DOMContentLoaded', () => {
     })
     
 
-    html += `</div></div>`;
+    html += `</div><p><a class="link" href="/main">Back to home</a></p></div>`;
 
     return html;
   }
@@ -178,7 +178,7 @@ document.addEventListener('DOMContentLoaded', () => {
     addClass(card, 'rotatingPositive');
 
     setTimeout(() => {
-      card.innerHTML = "<p>Finished!</p>";
+      card.innerHTML = `<p>Finished!</p><p><a class="link" href="/game">New game</a></p>`;
       addClass(card, 'rotatingNegative');
       removeClass(card, 'rotatingPositive');
 
