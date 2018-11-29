@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
   const card = document.querySelector('.content-box');
   let gameId;
-
+  let gameData
   let questions = [];
 
   axios.get("/categories")
@@ -32,11 +32,7 @@ document.addEventListener('DOMContentLoaded', () => {
     axios.post("/creategame", config)
       .then(response => {
         gameId = response.data.created._id;
-        return axios.get(`/question/${response.data.created.category}/${response.data.created.difficulty}`)
-
-      })
-      .then(question => {
-        printQuestion(question.data);
+        round();
       })
       .catch(err => console.log("Error: ", err))
   })
@@ -63,7 +59,8 @@ document.addEventListener('DOMContentLoaded', () => {
     console.log('ronda');
     axios.get(`/game/${gameId}`)
       .then(game => {
-        console.log(game.data)
+        // console.log(game.data)
+        gameData = game.data
         if (game.data.numberQuestions === game.data.questionsAnswered) {
           gameFinish();
         } else {
@@ -95,7 +92,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function generateHTML(question) {
     console.log(question);
-    let html = `
+    let html = `<div class="categorydifficulty"><p>${question.category} ${question.difficulty}</p></div>`
+
+    html += `<div class="category"><p>Total rounds: ${gameData.numberQuestions}</p>
+    <p>Questions answered: ${gameData.questionsAnswered}</p>
+    <p></p>
+    </div>`
+
+    html += `
       <div class="question" data-id="${question['_id']}">
         <p class="title">${question.question}</p>
         <div class="responses">
@@ -178,7 +182,14 @@ document.addEventListener('DOMContentLoaded', () => {
     addClass(card, 'rotatingPositive');
 
     setTimeout(() => {
-      card.innerHTML = `<p>Finished!</p><p><a class="link" href="/game">New game</a></p>`;
+      card.innerHTML = `<p>Finished!</p>
+      <p>Resume:</p>
+      <p>Correct questions: ${gameData.questionsCorrect}</p>
+      <p>Failed questions: ${gameData.questionsFailed}</p>
+      <p>Accumulated points: ${gameData.points}</p>
+      <p><a class="link" href="/game">New game</a></p>
+      <p><a class="link" href="/main">Back to home</a></p>
+      `;
       addClass(card, 'rotatingNegative');
       removeClass(card, 'rotatingPositive');
 
