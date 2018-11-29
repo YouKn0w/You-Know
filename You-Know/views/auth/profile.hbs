@@ -17,15 +17,15 @@
 
     <div class="questions">
       <div class="col">
-        <p class="quantity">288</p>
+        <p class="quantity total">-</p>
         <p class="type">Total</p>
       </div>
       <div class="col">
-        <p class="quantity">88</p>
+        <p class="quantity good">-</p>
         <p class="type">Good</p>
       </div>
       <div class="col">
-        <p class="quantity">200</p>
+        <p class="quantity bad">-</p>
         <p class="type">Bad</p>
       </div>
     </div>
@@ -40,11 +40,11 @@
         <p class="title" style="color: #F0D909">General</p>
         <div class="result">
           <div class="col">
-            <p class="quantity">4</p>
+            <p class="quantity good">{{user.stadistics.general.correct}}</p>
             <p class="type">Good</p>
           </div>
           <div class="col">
-            <p class="quantity">7</p>
+            <p class="quantity bad">{{user.stadistics.general.failed}}</p>
             <p class="type">Bad</p>
           </div>
         </div>
@@ -54,11 +54,11 @@
         <p class="title" style="color: #673AB7">Art</p>
         <div class="result">
           <div class="col">
-            <p class="quantity">4</p>
+            <p class="quantity good">{{user.stadistics.art.correct}}</p>
             <p class="type">Good</p>
           </div>
           <div class="col">
-            <p class="quantity">7</p>
+            <p class="quantity bad">{{user.stadistics.art.failed}}</p>
             <p class="type">Bad</p>
           </div>
         </div>
@@ -68,11 +68,11 @@
         <p class="title" style="color: #F44336">Entertainment</p>
         <div class="result">
           <div class="col">
-            <p class="quantity">14</p>
+            <p class="quantity good">{{user.stadistics.entertainment.correct}}</p>
             <p class="type">Good</p>
           </div>
           <div class="col">
-            <p class="quantity">71</p>
+            <p class="quantity bad">{{user.stadistics.entertainment.failed}}</p>
             <p class="type">Bad</p>
           </div>
         </div>
@@ -82,11 +82,11 @@
         <p class="title" style="color: #03A9F4">History & Geography</p>
         <div class="result">
           <div class="col">
-            <p class="quantity">6</p>
+            <p class="quantity good">{{user.stadistics.historyAndGeography.correct}}</p>
             <p class="type">Good</p>
           </div>
           <div class="col">
-            <p class="quantity">17</p>
+            <p class="quantity bad">{{user.stadistics.historyAndGeography.failed}}</p>
             <p class="type">Bad</p>
           </div>
         </div>
@@ -96,11 +96,11 @@
         <p class="title" style="color: #4CAF50">Science & Nature</p>
         <div class="result">
           <div class="col">
-            <p class="quantity">6</p>
+            <p class="quantity good">{{user.stadistics.science.correct}}</p>
             <p class="type">Good</p>
           </div>
           <div class="col">
-            <p class="quantity">1</p>
+            <p class="quantity bad">{{user.stadistics.science.failed}}</p>
             <p class="type">Bad</p>
           </div>
         </div>
@@ -110,17 +110,16 @@
         <p class="title" style="color: #FF9800">Sports</p>
         <div class="result">
           <div class="col">
-            <p class="quantity">3</p>
+            <p class="quantity good">{{user.stadistics.sports.correct}}</p>
             <p class="type">Good</p>
           </div>
           <div class="col">
-            <p class="quantity">23</p>
+            <p class="quantity bad">{{user.stadistics.sports.failed}}</p>
             <p class="type">Bad</p>
           </div>
         </div>
       </div>
     </div>
-
     <p><a class="link" href="/main">Back to home</a></p>
   </div>
 </div>

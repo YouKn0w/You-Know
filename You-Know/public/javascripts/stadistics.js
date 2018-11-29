@@ -1,4 +1,20 @@
 window.onload = function() {
+
+  let corrects = [];
+  document.querySelectorAll('.category .quantity.good').forEach(tag => corrects.push(+tag.innerHTML));
+  const totalCorrects = corrects.reduce((act, acc) => act + acc);
+
+  document.querySelector('.questions .quantity.good').innerHTML = totalCorrects;
+
+  let incorrects = [];
+  document.querySelectorAll('.category .quantity.bad').forEach(tag => incorrects.push(+tag.innerHTML));
+  const totalIncorrects = incorrects.reduce((act, acc) => act + acc);
+
+  document.querySelector('.questions .quantity.bad').innerHTML = totalIncorrects;
+
+  document.querySelector('.questions .quantity.total').innerHTML = totalIncorrects + totalCorrects;
+
+
 console.log('loaded');
 
 console.log(data);
@@ -6,22 +22,23 @@ delete data.ironhack;
 
 let answers = [];
 for (let key in data) {
-  answers.push(data[key].correct)
+  console.log(key)
+  answers.push(data[key].correct - data[key].failed)
 }
 
 var width = document.getElementById('graph').offsetWidth,
 height = document.getElementById('graph').offsetHeight,
 padding = 1.5, // separation between same-color nodes
 clusterPadding = 6, // separation between different-color nodes
-maxRadius = Math.min(height, width)/8;
-minRadius = Math.min(height, width)/10;
+maxRadius = Math.min(height, width)/9;
+minRadius = Math.min(height, width)/12;
 
 console.log(width)
 
 const values = [5, 20, 10, 45, 65, 69, 10]// ;number of distinct clusters
 
 var molasMucho = d3.scale.linear().domain([d3.min(answers), d3.max(answers)]).range([minRadius, maxRadius]);
-var colors = ['#F44336','#673AB7','#03A9F4','#4CAF50','#FFEB3B','#FF9800'];
+var colors = ['#F0D909','#F44336','#4CAF50','#673AB7','#03A9F4','#FF9800'];
 //var teSalesMinerales = d3.scale.linear().domain([d3.min(answers), d3.max(answers)]).range(["green", "blue"]);
 
 var n = answers.length, // total number of nodes
