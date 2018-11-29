@@ -139,7 +139,7 @@ router.post("/signup", uploadCloud.single('photo'), (req, res, next) => {
               res.render("auth/signup", { message: "Something went wrong, try again or wait, thanks and sorry for issues" });
             })
         })
-    }, { public_id: `${username}.png`, folder: 'youknow' })
+    }, { public_id: Date.now(), folder: 'youknow' })
 });
 
 router.get("/logout", ensureLoggedIn("/"), (req, res) => {
