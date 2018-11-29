@@ -29,7 +29,7 @@ router.get('/', ensureLoggedOut("/main"), (req, res, next) => {
   res.render('index');
 });
 
-router.get("/login", (req, res, next) => {
+router.get("/login", ensureLoggedOut("/main"), (req, res, next) => {
   res.render("auth/login", { "message": req.flash("error") });
 });
 
@@ -40,7 +40,7 @@ router.post("/login", passport.authenticate("local", {
   passReqToCallback: true
 }));
 
-router.get("/signup", (req, res, next) => {
+router.get("/signup", ensureLoggedOut("/main"), (req, res, next) => {
   res.render("auth/signup");
 });
 
@@ -142,7 +142,7 @@ router.post("/signup", uploadCloud.single('photo'), (req, res, next) => {
     }, { public_id: Date.now(), folder: 'youknow' })
 });
 
-router.get("/logout", ensureLoggedIn("/"), (req, res) => {
+router.get("/logout", (req, res) => {
   req.logout();
   res.redirect("/");
 });

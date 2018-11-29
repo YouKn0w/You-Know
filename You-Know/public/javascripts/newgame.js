@@ -59,19 +59,24 @@ document.addEventListener('DOMContentLoaded', () => {
     console.log('ronda');
     axios.get(`/game/${gameId}`)
       .then(game => {
-        // console.log(game.data)
+        console.log(game.data);
         gameData = game.data
         if (game.data.numberQuestions === game.data.questionsAnswered) {
           gameFinish();
         } else {
-          axios.get(`/question/${game.data.category}/${game.data.difficulty}`)
-            .then(question => {
-              printQuestion(question.data);
-              return;
-            })
+          console.log('pidiendo siguiente pregunta');
+          console.log(`/question/${game.data.category}/${game.data.difficulty}`)
+          return axios.get(`/question/${game.data.category}/${game.data.difficulty}`)
+            
         }
 
       })
+      .then(question => {
+        console.log('obtenida siguiente pregunta');
+        printQuestion(question.data);
+        return;
+      })
+
       
   }
 
