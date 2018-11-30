@@ -1,3 +1,16 @@
+.game-background {
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+  z-index: 0;
+  opacity: 0;
+  transition: all .2s ease-in-out;
+
+  * {
+    transition: all .2s ease-in-out;
+  }
+}
+
 .game {
   form#new-game {
 
@@ -28,6 +41,7 @@
     font-size: 1.8rem;
     margin: 1rem;
     margin-bottom: 2rem;
+    font-weight: 700;
   }
 
   p.total, p.questions {
@@ -101,5 +115,20 @@
   text-transform: uppercase;
   opacity: .7;
   font-size: .8rem;
+}
+
+
+.questionresult {
+  text-align: center;
+  font-size: 2rem;
+  font-weight: 700;
+
+
+  img {
+    height: 5rem;
+    width: 5rem;
+    margin-top: 1.5rem;
+
+  }
 }
 

@@ -5,6 +5,7 @@
 @import "base/_form";
 @import "base/_button"; 
 @import "base/radio-button";
+@import "base/input-file";
 
 // Layout
 @import "layout/_general-layout";
@@ -14,5 +15,6 @@
 @import "layout/_ranking";
 
 // Modules
-@import "modules/_box-rotate.scss";
-@import "modules/graph.scss";
+@import "modules/_box-rotate";
+@import "modules/_graph";
+@import "modules/_categories-colors";

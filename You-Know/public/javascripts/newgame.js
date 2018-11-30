@@ -90,7 +90,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function generateHTML(question) {
     console.log(question);
-    const category = getCategoryName(question.category)
+    const category = getCategoryName(question.category);
+    changeBodyClass(category);
     let html = `<div class="questionInfo"><p class="category">${category}</p><p class="difficulty">${question.difficulty.charAt(0).toUpperCase() + question.difficulty.slice(1)}</p></div>`
 
     html += `<div class="rounds"><p>Round ${gameData.questionsAnswered + 1} of ${gameData.numberQuestions}</p></div>`;
@@ -145,7 +146,8 @@ document.addEventListener('DOMContentLoaded', () => {
     addClass(card, 'rotatingPositive');
 
     setTimeout(() => {
-      card.innerHTML = "<p>Correct!</p>";
+      document.querySelector('body').className = 'round correct';
+      card.innerHTML = "<div class='questionresult'><p>Correct!</p><img src='/images/icons/like.svg'></div>";
       addClass(card, 'rotatingNegative');
       removeClass(card, 'rotatingPositive');
 
@@ -161,7 +163,8 @@ document.addEventListener('DOMContentLoaded', () => {
     addClass(card, 'rotatingPositive');
 
     setTimeout(() => {
-      card.innerHTML = "<p>Incorrect!</p>";
+      document.querySelector('body').className = 'round incorrect';
+      card.innerHTML = "<div class='questionresult'><p>Incorrect!</p><img src='/images/icons/dislike.svg'></div>";
       addClass(card, 'rotatingNegative');
       removeClass(card, 'rotatingPositive');
 
@@ -177,6 +180,7 @@ document.addEventListener('DOMContentLoaded', () => {
     addClass(card, 'rotatingPositive');
 
     setTimeout(() => {
+      document.querySelector('body').className = '';
       card.innerHTML = `<p class="completed">Complete!</p>
       <p class="total"><span class="label">Total answered:</span> <span class="number">${gameData.questionsCorrect + gameData.questionsFailed}</span></p>
       <p class="questions"><span class="label">Correct:</span> <span class="number">${gameData.questionsCorrect}</span></p>
@@ -205,8 +209,39 @@ document.addEventListener('DOMContentLoaded', () => {
     for (let key in categories) {
       if (categories[key].includes(category)) find = categories[key][0];
     }
-    console.log(find);
+    //console.log(find);
     return find;
+  }
+
+  function changeBodyClass(category) {
+    console.log(category)
+    switch (category) {
+      case 'General':
+        document.querySelector('body').className = 'round general';
+        break;
+
+      case 'Entertainment':
+        document.querySelector('body').className = 'round entertainment';
+        break;
+
+      case 'Science & Nature':
+        document.querySelector('body').className = 'round science';
+        break;
+
+      case 'Art':
+        document.querySelector('body').className = 'round art';
+        break;
+
+      case 'History & Geography':
+        document.querySelector('body').className = 'round history';
+        break;
+
+      case 'Sports':
+        document.querySelector('body').className = 'round sports';
+        break;
+
+      
+    }
   }
 
 }, false);

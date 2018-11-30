@@ -1,0 +1,44 @@
+.input-box {
+  display: block;
+
+  #photo {
+    width: 0.1px;
+    height: 0.1px;
+    opacity: 0;
+    overflow: hidden;
+    position: absolute;
+    z-index: -1;
+  }
+
+  label {
+    width: 100%;
+    font-size: 1.25rem;
+    font-weight: 700;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    cursor: pointer;
+    display: inline-block;
+    overflow: hidden;
+    padding: 0.625rem 1.25rem;
+    color: $blue-button;
+    border: 2px solid $blue-button;
+    border-radius: .4rem;
+
+    &:hover {
+      color: $white;
+      background-color: $blue-button;
+
+      path {
+        fill: $white;
+      }
+    }
+  }
+
+  span {
+    font-size: 1.1rem;
+  }
+
+  path {
+    fill: $blue-button;
+  }
+}
