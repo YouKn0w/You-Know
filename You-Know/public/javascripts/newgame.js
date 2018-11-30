@@ -164,7 +164,7 @@ document.addEventListener('DOMContentLoaded', () => {
         round()
       }, 400);
 
-    }, 200);
+    }, 300);
   }
 
   function incorrect(correct) {
@@ -189,7 +189,7 @@ document.addEventListener('DOMContentLoaded', () => {
         round()
       }, 400);
 
-    }, 200);
+    }, 500);
   }
 
   function gameFinish() {
