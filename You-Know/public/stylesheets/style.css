@@ -164,6 +164,9 @@ form {
   margin-top: 1rem !important;
   display: block; }
 
+button:focus, a:focus {
+  outline: 0; }
+
 .buttonsGroup {
   display: flex;
   flex-wrap: wrap;
