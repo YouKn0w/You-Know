@@ -12,23 +12,28 @@ form {
     margin-bottom: .5rem;
   }
 
+  > label {
+    text-transform: uppercase;
+    text-align: left;
+    opacity: .8;
+    font-size: .8rem;
+    //margin-top: 1.5rem;
+  }
+
   input {
     margin-bottom: 1rem;
     border-radius: 3px 3px 3px 3px;
     overflow: hidden;
     border-width: 0px 0px 2px 0px;
-    border-top-style: none;
-    border-right-style: none;
-    border-left-style: none;
-    border-color: transparent transparent $gray transparent;
-    border-style: solid;
+    border: 2px solid;
+    border-color: transparent transparent $blue-button transparent;
     background: $white;
     transition: all .2s ease-in-out;
     padding: .7rem;
     font-size: .9rem;
 
     &:focus {
-      border-color: transparent transparent $blue-button transparent;
+      border: 2px solid $blue-button;
       outline: none;
     }
   }

@@ -1,0 +1,189 @@
+body.round {
+    .game-background {
+      opacity: 1;
+    }
+
+  &.general {
+    .game-background {
+      background: #FFEB3B;
+    }
+
+    .button.simple, p.category, a.link {
+      color: darken(#FFEB3B, 20);
+    }
+
+    .button.simple:hover {
+      background: darken(#FFEB3B, 20);
+      color: $white;
+    }
+
+    .button.small {
+      box-shadow: 0px 6px 15px -3px rgba(255, 235, 59, 0.61);
+    }
+
+    .button {
+      border: 2px solid darken(#FFEB3B, 20);
+    }
+  }
+
+  &.entertainment {
+    .game-background {
+      background: #F44336;
+    }
+
+    .button.simple, p.category, a.link {
+      color: darken(#F44336, 0);
+    }
+
+    .button.simple:hover {
+      background: #F44336;
+      color: $white;
+    }
+
+    .button.small {
+      box-shadow: 0px 6px 15px -3px rgba(244, 68, 54, 0.61);
+    }
+
+    .button {
+      border: 2px solid darken(#F44336, 0);
+    }
+  }
+
+  &.science {
+    .game-background {
+      background: #4CAF50;
+    }
+
+    .button.simple, p.category, a.link {
+      color: darken(#4CAF50, 0);
+    }
+
+    .button.simple:hover {
+      background: #4CAF50;
+      color: $white;
+    }
+
+    .button.small {
+      box-shadow: 0px 6px 15px -3px rgba(76, 175, 82, 0.61);
+    }
+
+    .button {
+      border: 2px solid darken(#4CAF50, 0);
+    }
+  }
+
+  &.art {
+    .game-background {
+      background: #673AB7;
+    }
+
+    .button.simple, p.category, a.link {
+      color: darken(#673AB7, 0);
+    }
+
+    .button.simple:hover {
+      background: #673AB7;
+      color: $white;
+    }
+
+    .button.small {
+      box-shadow: 0px 6px 15px -3px rgba(104, 58, 183, 0.61);
+    }
+
+    .button {
+      border: 2px solid darken(#673AB7, 0);
+    }
+  }
+
+  &.history {
+    .game-background {
+      background: #03A9F4;
+    }
+
+    .button.simple, p.category, a.link {
+      color: darken(#03A9F4, 0);
+    }
+
+    .button.simple:hover {
+      background: #03A9F4;
+      color: $white;
+    }
+
+    .button.small {
+      box-shadow: 0px 6px 15px -3px rgba(3, 171, 244, 0.61);
+    }
+
+    .button {
+      border: 2px solid darken(#03A9F4, 0);
+    }
+  }
+
+  &.sports {
+    .game-background {
+      background: #FF9800;
+    }
+
+    .button.simple, p.category, a.link {
+      color: darken(#FF9800, 0);
+    }
+
+    .button.simple:hover {
+      background: #FF9800;
+      color: $white;
+    }
+
+    .button.small {
+      box-shadow: 0px 6px 15px -3px rgba(255, 153, 0, 0.61);
+    }
+
+    .button {
+      border: 2px solid darken(#FF9800, 0);
+    }
+  }
+
+  &.correct {
+    .game-background {
+      background: #2E7D32;
+    }
+
+    .button.simple, p.category, a.link {
+      color: darken(#2E7D32, 0);
+    }
+
+    .button.simple:hover {
+      background: #2E7D32;
+      color: $white;
+    }
+
+    .button.small {
+      box-shadow: 0px 6px 15px -3px rgba(255, 235, 59, 0.61);
+    }
+
+    .button {
+      border: 2px solid darken(#2E7D32, 0);
+    }
+  }
+
+  &.incorrect {
+    .game-background {
+      background: #B71C1C;
+    }
+
+    .button.simple, p.category, a.link {
+      color: darken(#B71C1C, 0);
+    }
+
+    .button.simple:hover {
+      background: #B71C1C;
+      color: $white;
+    }
+
+    .button.small {
+      box-shadow: 0px 6px 15px -3px rgba(255, 235, 59, 0.61);
+    }
+
+    .button {
+      border: 2px solid darken(#B71C1C, 0);
+    }
+  }
+}

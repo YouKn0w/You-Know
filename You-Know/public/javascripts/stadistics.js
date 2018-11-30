@@ -1,7 +1,7 @@
 window.onload = function () {
 
   let corrects = [];
-  document.querySelectorAll('.category .quantity.good').forEach(tag => corrects.push(+tag.innerHTML));
+  document.querySelelinkctorAll('.category .quantity.good').forEach(tag => corrects.push(+tag.innerHTML));
   const totalCorrects = corrects.reduce((act, acc) => act + acc);
 
   document.querySelector('.questions .quantity.good').innerHTML = totalCorrects;

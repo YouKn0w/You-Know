@@ -19,5 +19,10 @@
     align-items: center;
 
     max-width: 35rem;
+    z-index: 1;
+  }
+
+  button {
+    margin-bottom: 1.5rem;
   }
 }
