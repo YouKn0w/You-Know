@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded', () => {
   let gameId;
   let gameData
   let questions = [];
-  const configTime = 30;
+  const configTime = 15;
   let theTime = configTime
   let intervalId;
 
