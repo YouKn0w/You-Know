@@ -485,7 +485,6 @@ button:focus, a:focus {
     width: 5rem;
     margin-top: 1.5rem; }
 
-<<<<<<< HEAD
 .correctanswer {
   font-size: 1.1rem;
   margin-top: 1rem;
@@ -495,7 +494,7 @@ button:focus, a:focus {
     font-weight: 500;
     display: block;
     margin-top: .5rem; }
-=======
+
 .time {
   position: absolute;
   bottom: 0;
@@ -509,7 +508,6 @@ button:focus, a:focus {
   left: 0;
   right: 0;
   margin-bottom: 1rem; }
->>>>>>> ed00ad4a23a77cc68f853bfea2814f9daa4f03e2
 
 .ranking .rows {
   margin-bottom: 2rem; }
