@@ -1,5 +1,11 @@
 .flip {
 	backface-visibility: hidden;
+	-webkit-backface-visibility: hidden;
+
+	&:after, &:before {
+		-webkit-backface-visibility: hidden;
+		backface-visibility: hidden;
+	}
 
 	&.rotatingPositive {
 		transform: rotateY(180deg)

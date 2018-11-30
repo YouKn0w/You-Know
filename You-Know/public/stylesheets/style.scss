@@ -4,13 +4,15 @@
 @import "base/_base"; 
 @import "base/_form";
 @import "base/_button"; 
+@import "base/radio-button";
 
 // Layout
 @import "layout/_general-layout";
 @import "layout/_auth-layout";
+@import "layout/_profile";
 @import "layout/_game-layout";
-@import "layout/profile";
+@import "layout/_ranking";
 
 // Modules
 @import "modules/_box-rotate.scss";
-@import "modules/graph.scss"
+@import "modules/graph.scss";

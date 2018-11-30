@@ -97,12 +97,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function generateHTML(question) {
     console.log(question);
-    let html = `<div class="categorydifficulty"><p>${question.category} ${question.difficulty}</p></div>`
+    const category = getCategoryName(question.category)
+    let html = `<div class="questionInfo"><p class="category">${category}</p><p class="difficulty">${question.difficulty.charAt(0).toUpperCase() + question.difficulty.slice(1)}</p></div>`
 
-    html += `<div class="category"><p>Total rounds: ${gameData.numberQuestions}</p>
-    <p>Questions answered: ${gameData.questionsAnswered}</p>
-    <p></p>
-    </div>`
+    html += `<div class="rounds"><p>Round ${gameData.questionsAnswered} of ${gameData.numberQuestions}</p></div>`;
 
     html += `
       <div class="question" data-id="${question['_id']}">
@@ -110,7 +108,7 @@ document.addEventListener('DOMContentLoaded', () => {
         <div class="responses">
     `;
     question.answers.forEach(answer => {
-      html += `<button data-id="${answer['_id']}">${answer.value}</button>`;
+      html += `<button class="button small simple" data-id="${answer['_id']}">${answer.value}</button>`;
     })
     
 
@@ -199,6 +197,24 @@ document.addEventListener('DOMContentLoaded', () => {
       removeClass(card, 'rotatingPositive');
 
     }, 600);
+  }
+
+  function getCategoryName(category) {
+    const categories = {
+      general: ['General', 'General Knowledge'],
+      entertainment: ['Entertainment', 'Entertainment: Books', 'Entertainment: Film', 'Entertainment: Music', 'Entertainment: Musicals & Theatres', 'Entertainment: Television', 'Entertainment: Video Games', 'Entertainment: Board Games', 'Celebrities', 'Entertainment: Comics', 'Entertainment: Japanese Anime & Manga', 'Entertainment: Cartoon & Animations'],
+      science: ['Science & Nature', 'Science & Nature', 'Science: Computers', 'Science: Mathematics', 'Science: Gadgets', 'Animals', 'Vehicles'],
+      art: ['Art'],
+      historyAndGeography: ['History & Geography', 'History', 'Geography', 'Politics', 'Mythology'],
+      sports: ['Sports']
+    }
+    let find;
+  
+    for (let key in categories) {
+      if (categories[key].includes(category)) find = categories[key][0];
+    }
+    console.log(find);
+    return find;
   }
 
 }, false);

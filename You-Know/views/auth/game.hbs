@@ -1,25 +1,67 @@
-<div class="auth main-container">
+<div class="auth main-container game">
   <div class="content-box flip">
       <h1>Game</h1>
 
       <form id="new-game">
         <div class="error-message"></div>
 
+
+        {{!-- <div class="inputGroup">
+    <input id="radio1" name="radio" type="radio"/>
+    <label for="radio1">Yes</label>
+  </div>
+  <div class="inputGroup">
+    <input id="radio2" name="radio" type="radio"/>
+    <label for="radio2">No</label>
+  </div> --}}
+
+
+
         <label for="difficulty">Difficulty</label>
-        <fieldset>
-          <input type="radio" name="difficulty" value="any" checked>Any
-          <input type="radio" name="difficulty" value="easy">Easy
-          <input type="radio" name="difficulty" value="medium">Medium
-          <input type="radio" name="difficulty" value="hard">Hard
-        </fieldset>
+        <div class="buttonsGroup">
+          <div class="inputGroup">
+            <input id="any" value="any" name="difficulty" type="radio" checked/>
+            <label for="any" value="any">Any</label>
+          </div>
+
+          <div class="inputGroup">
+            <input id="easy" value="easy" name="difficulty" type="radio"/>
+            <label for="easy" value="easy">Easy</label>
+          </div>
+
+          <div class="inputGroup">
+            <input id="medium" value="medium" name="difficulty" type="radio"/>
+            <label for="medium" value="medium">Medium</label>
+          </div>
+
+          <div class="inputGroup">
+            <input id="hard" value="hard" name="difficulty" type="radio"/>
+            <label for="hard">Hard</label>
+          </div>
+        </div>
 
         <label for="rounds">Rounds</label>
-        <fieldset>
-          <input type="radio" name="rounds" value="3" checked>3
-          <input type="radio" name="rounds" value="10">10
-          <input type="radio" name="rounds" value="30">30
-          <input type="radio" name="rounds" value="50">50
-        </fieldset>
+        <div class="buttonsGroup">
+          <div class="inputGroup">
+            <input id="3" value="3" name="rounds" type="radio" checked/>
+            <label for="3" value="3">3</label>
+          </div>
+
+          <div class="inputGroup">
+            <input id="10" value="10" name="rounds" type="radio"/>
+            <label for="10" value="10">10</label>
+          </div>
+
+          <div class="inputGroup">
+            <input id="30" value="30" name="rounds" type="radio"/>
+            <label for="30" value="30">30</label>
+          </div>
+
+          <div class="inputGroup">
+            <input id="50" value="50" name="rounds" type="radio"/>
+            <label for="50" value="50">50</label>
+          </div>
+        </div>
 
 
         {{!-- <label for="category">Category</label> --}}

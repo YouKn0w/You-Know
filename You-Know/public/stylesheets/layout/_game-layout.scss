@@ -1,0 +1,59 @@
+.game {
+  form#new-game {
+
+    label {
+      text-align: left;
+    }
+
+    > label {
+      opacity: .7;
+      text-transform: uppercase;
+      font-size: .8rem;
+    }
+
+    button {
+      margin-bottom: 1.5rem;
+    }
+  }
+
+  .button.simple {
+    margin: .5rem .3rem;
+  }
+}
+
+.questionInfo {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  padding: 1rem;
+  margin-bottom: 1rem;
+
+  p {
+    margin-bottom: 0;
+    text-transform: uppercase;
+  }
+
+  p.category {
+    font-size: 1.4rem;
+    font-weight: 600;
+    letter-spacing: .025rem;
+  }
+
+  p.difficulty {
+    opacity: .9;
+  }
+
+}
+
+.responses {
+  margin-bottom: 1rem;
+}
+
+.rounds {
+  position: absolute;
+  bottom: 0;
+  right: 2rem;
+  text-transform: uppercase;
+  opacity: .7;
+  font-size: .8rem;
+}

@@ -84,6 +84,7 @@
     flex-wrap: wrap;
     align-items: center;
     justify-content: center;
+    margin-bottom: 1.5rem;
 
     
     .category {
@@ -131,5 +132,19 @@
         }
       }
     }
+  }
+
+  .questions > .col, .category {
+    padding: .5rem;
+    border-radius: .4rem;
+
+    &:hover {
+      box-shadow: 0 15px 20px rgba(0,0,0,0.2);
+      transform: translate(0, -4px);
+    }
+  }
+
+  .questions > .col {
+    padding: 1rem;
   }
 }
