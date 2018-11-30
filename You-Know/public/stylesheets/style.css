@@ -398,7 +398,8 @@ form {
   .questionInfo p.category {
     font-size: 1.4rem;
     font-weight: 600;
-    letter-spacing: .025rem; }
+    letter-spacing: .025rem;
+    margin-right: 2rem; }
   .questionInfo p.difficulty {
     opacity: .9; }
 
