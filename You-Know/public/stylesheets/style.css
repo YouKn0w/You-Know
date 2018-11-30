@@ -301,6 +301,9 @@ button:focus, a:focus {
   margin-top: 1rem;
   display: block; }
 
+.content-box.mainpage {
+  padding: 2rem; }
+
 .profile .header {
   display: flex;
   justify-content: flex-start;
