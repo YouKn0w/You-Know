@@ -105,7 +105,7 @@
 }
 
 .responses {
-  margin-bottom: 1rem;
+  margin-bottom: 3rem;
 }
 
 .rounds {
@@ -132,3 +132,20 @@
   }
 }
 
+.time {
+  position: absolute;
+  bottom: 0;
+  left: 2rem;
+  font-size: 1.5rem;
+  font-weight: 600;
+
+  
+}
+
+.linkingame {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin-bottom: 1rem;
+}
