@@ -32,7 +32,7 @@ window.onload = function () {
     padding = 1.5, // separation between same-color nodes
     clusterPadding = 6, // separation between different-color nodes
     // maxRadius = Math.min(height, width)/9;
-    maxRadius = 80
+    maxRadius = 50
   // minRadius = Math.min(height, width)/12;
   minRadius = 5
 
