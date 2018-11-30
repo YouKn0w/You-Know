@@ -132,3 +132,15 @@
   }
 }
 
+.correctanswer {
+  font-size: 1.1rem;
+  margin-top: 1rem;
+  display: flex;
+  flex-direction: column;
+
+  span {
+    font-weight: 500;
+    display: block;
+    margin-top: .5rem;
+  }
+}

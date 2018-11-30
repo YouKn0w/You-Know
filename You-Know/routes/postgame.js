@@ -45,9 +45,11 @@ router.post('/checkquestion', ensureLoggedIn("/login"), (req, res, next) => {
   const userId = req.user._id;
   const { questionId, answer, answerId, gameId } = req.body;
   let category;
+  let correct;
 
   Answer.findById(answerId)
     .then(answer => {
+      //correct = answer.correct;
 
       if (answer.correct === true) {
 
@@ -107,10 +109,21 @@ router.post('/checkquestion', ensureLoggedIn("/login"), (req, res, next) => {
           .then(user => {
             user.stadistics[category].failed++;
             user.save(function (err) {
-              res.json({ result: false })
-              return;
+              Question.findById(questionId).populate('answers')
+              .then(questions => {
+                questions.answers.forEach(answer => {
+                  if (answer.correct) {
+                    correct = answer.value;
+                    res.json({ result: false, correct })
+                    return;
+                  } 
+                })
+            
+              })
+              .catch(err => console.log(err))
             });
           })
+          
       }
     })
 

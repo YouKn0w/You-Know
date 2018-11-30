@@ -485,6 +485,16 @@ button:focus, a:focus {
     width: 5rem;
     margin-top: 1.5rem; }
 
+.correctanswer {
+  font-size: 1.1rem;
+  margin-top: 1rem;
+  display: flex;
+  flex-direction: column; }
+  .correctanswer span {
+    font-weight: 500;
+    display: block;
+    margin-top: .5rem; }
+
 .ranking .rows {
   margin-bottom: 2rem; }
 

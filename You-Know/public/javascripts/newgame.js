@@ -89,7 +89,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   function generateHTML(question) {
-    console.log(question);
+    //console.log(question);
     const category = getCategoryName(question.category);
     changeBodyClass(category);
     let html = `<div class="questionInfo"><p class="category">${category}</p><p class="difficulty">${question.difficulty.charAt(0).toUpperCase() + question.difficulty.slice(1)}</p></div>`
@@ -130,11 +130,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
       axios.post('/checkquestion', config)
         .then(result => {
+          //console.log(result)
 
           if (result.data.result) {
             correct();
           } else {
-            incorrect();
+            console.log(result.data.correct)
+            incorrect(result.data.correct);
           }
         })
     }
@@ -158,13 +160,20 @@ document.addEventListener('DOMContentLoaded', () => {
     }, 200);
   }
 
-  function incorrect() {
+  function incorrect(correct) {
     removeClass(card, 'rotatingNegative');
     addClass(card, 'rotatingPositive');
 
     setTimeout(() => {
       document.querySelector('body').className = 'round incorrect';
-      card.innerHTML = "<div class='questionresult'><p>Incorrect!</p><img src='/images/icons/dislike.svg'></div>";
+      card.innerHTML = `
+      <div class='questionresult'>
+        <p>Incorrect!</p>
+        <img src='/images/icons/dislike.svg'>
+
+        <p class="correctanswer">Correct Answer<span>${correct}</span></p>
+        
+      </div>`;
       addClass(card, 'rotatingNegative');
       removeClass(card, 'rotatingPositive');
 
@@ -214,7 +223,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   function changeBodyClass(category) {
-    console.log(category)
+    //console.log(category)
     switch (category) {
       case 'General':
         document.querySelector('body').className = 'round general';
