@@ -131,6 +131,8 @@ document.addEventListener('DOMContentLoaded', () => {
         gameId
       };
 
+      console.log(config)
+
       e.target.removeEventListener(e.type, arguments.callee);
 
 
@@ -173,14 +175,21 @@ document.addEventListener('DOMContentLoaded', () => {
 
     setTimeout(() => {
       document.querySelector('body').className = 'round incorrect';
-      card.innerHTML = `
+      let html = `
       <div class='questionresult'>
         <p>Incorrect!</p>
         <img src='/images/icons/dislike.svg'>
 
-        <p class="correctanswer">Correct Answer<span>${correct}</span></p>
         
-      </div>`;
+        
+      `;
+
+      if (correct !== undefined) {
+        html += `<p class="correctanswer">Correct Answer<span>${correct}</span></p>`;
+      }
+      
+      html += '</div>';
+      card.innerHTML = html;
       addClass(card, 'rotatingNegative');
       removeClass(card, 'rotatingPositive');
 
@@ -279,6 +288,8 @@ document.addEventListener('DOMContentLoaded', () => {
       answer: 'Loft',
       gameId
     };
+
+    console.log(config)
 
 
     axios.post('/checkquestion', config)
