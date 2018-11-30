@@ -292,9 +292,14 @@ button:focus, a:focus {
     justify-content: center;
     align-items: center;
     max-width: 35rem;
-    z-index: 1; }
+    z-index: 1;
+    margin: 1rem; }
   .auth button {
     margin-bottom: 1.5rem; }
+
+.mainpage .link {
+  margin-top: 1rem;
+  display: block; }
 
 .profile .header {
   display: flex;
