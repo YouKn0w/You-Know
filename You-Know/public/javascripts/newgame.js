@@ -3,6 +3,9 @@ document.addEventListener('DOMContentLoaded', () => {
   let gameId;
   let gameData
   let questions = [];
+  const configTime = 30;
+  let theTime = configTime
+  let intervalId;
 
   axios.get("/categories")
     .then(categories => {
@@ -61,19 +64,20 @@ document.addEventListener('DOMContentLoaded', () => {
           gameFinish();
         } else {
           return axios.get(`/question/${game.data.category}/${game.data.difficulty}`)
-            
+          
         }
 
       })
       .then(question => {
         printQuestion(question.data);
+        crono();
         return;
       })
 
-      
+
   }
 
-  
+
   function addClass(el, className) {
     if (el.classList)
       el.classList.add(className);
@@ -92,7 +96,9 @@ document.addEventListener('DOMContentLoaded', () => {
     //console.log(question);
     const category = getCategoryName(question.category);
     changeBodyClass(category);
-    let html = `<div class="questionInfo"><p class="category">${category}</p><p class="difficulty">${question.difficulty.charAt(0).toUpperCase() + question.difficulty.slice(1)}</p></div>`
+    let html = `<div class="time"><p>${theTime}</p></div>`
+
+    html += `<div class="questionInfo"><p class="category">${category}</p><p class="difficulty">${question.difficulty.charAt(0).toUpperCase() + question.difficulty.slice(1)}</p></div>`
 
     html += `<div class="rounds"><p>Round ${gameData.questionsAnswered + 1} of ${gameData.numberQuestions}</p></div>`;
 
@@ -104,9 +110,9 @@ document.addEventListener('DOMContentLoaded', () => {
     question.answers.forEach(answer => {
       html += `<button class="button small simple" data-id="${answer['_id']}">${answer.value}</button>`;
     })
-    
 
-    html += `</div><p><a class="link" href="/main">Back to home</a></p></div>`;
+
+    html += `</div><p><a class="link linkingame" href="/main">Back to home</a></p></div>`;
 
     return html;
   }
@@ -116,12 +122,12 @@ document.addEventListener('DOMContentLoaded', () => {
     document.querySelectorAll('.responses button').forEach(button => {
       button.onclick = checkQuestion;
     })
-  
+
     function checkQuestion(e) {
       const config = {
-        answerId: e.target.getAttribute('data-id'), 
-        questionId: document.querySelector('.question').getAttribute('data-id'), 
-        answer: e.target.innerHTML, 
+        answerId: e.target.getAttribute('data-id'),
+        questionId: document.querySelector('.question').getAttribute('data-id'),
+        answer: e.target.innerHTML,
         gameId
       };
 
@@ -152,8 +158,9 @@ document.addEventListener('DOMContentLoaded', () => {
       card.innerHTML = "<div class='questionresult'><p>Correct!</p><img src='/images/icons/like.svg'></div>";
       addClass(card, 'rotatingNegative');
       removeClass(card, 'rotatingPositive');
-
+      
       setTimeout(() => {
+        stopInterval()
         round()
       }, 400);
 
@@ -178,6 +185,7 @@ document.addEventListener('DOMContentLoaded', () => {
       removeClass(card, 'rotatingPositive');
 
       setTimeout(() => {
+        stopInterval()
         round()
       }, 400);
 
@@ -214,7 +222,7 @@ document.addEventListener('DOMContentLoaded', () => {
       sports: ['Sports']
     }
     let find;
-  
+
     for (let key in categories) {
       if (categories[key].includes(category)) find = categories[key][0];
     }
@@ -249,8 +257,47 @@ document.addEventListener('DOMContentLoaded', () => {
         document.querySelector('body').className = 'round sports';
         break;
 
-      
+
     }
+  }
+
+  function crono() {
+    intervalId = setInterval(function () {
+      theTime--;
+      document.querySelector('.time p').innerHTML = theTime;
+      console.log(theTime)
+      if (theTime === 0) {
+        stopCronoAndFail()
+      }
+    }, 1000)
+  }
+
+  function stopCronoAndFail() {
+    const config = {
+      answerId: '5c01238fb359b81088f88082',
+      questionId: document.querySelector('.question').getAttribute('data-id'),
+      answer: 'Loft',
+      gameId
+    };
+
+
+    axios.post('/checkquestion', config)
+      .then(result => {
+
+        if (result.data.result) {
+          correct();
+        } else {
+          incorrect();
+        }
+      })
+
+
+
+    }
+    
+    function stopInterval() {
+      theTime = configTime;
+      clearInterval(intervalId)
   }
 
 }, false);

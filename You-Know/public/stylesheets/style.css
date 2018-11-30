@@ -466,7 +466,7 @@ button:focus, a:focus {
     opacity: .9; }
 
 .responses {
-  margin-bottom: 1rem; }
+  margin-bottom: 3rem; }
 
 .rounds {
   position: absolute;
@@ -485,6 +485,7 @@ button:focus, a:focus {
     width: 5rem;
     margin-top: 1.5rem; }
 
+<<<<<<< HEAD
 .correctanswer {
   font-size: 1.1rem;
   margin-top: 1rem;
@@ -494,6 +495,21 @@ button:focus, a:focus {
     font-weight: 500;
     display: block;
     margin-top: .5rem; }
+=======
+.time {
+  position: absolute;
+  bottom: 0;
+  left: 2rem;
+  font-size: 1.5rem;
+  font-weight: 600; }
+
+.linkingame {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin-bottom: 1rem; }
+>>>>>>> ed00ad4a23a77cc68f853bfea2814f9daa4f03e2
 
 .ranking .rows {
   margin-bottom: 2rem; }
@@ -563,10 +579,13 @@ button:focus, a:focus {
 body.round .game-background {
   opacity: 1; }
 
+body.round .content-box {
+  min-width: 25rem; }
+
 body.round.general .game-background {
   background: #FFEB3B; }
 
-body.round.general .button.simple, body.round.general p.category, body.round.general a.link {
+body.round.general .button.simple, body.round.general p.category, body.round.general a.link, body.round.general .time {
   color: #d4be00; }
 
 body.round.general .button.simple:hover {
@@ -582,7 +601,7 @@ body.round.general .button {
 body.round.entertainment .game-background {
   background: #F44336; }
 
-body.round.entertainment .button.simple, body.round.entertainment p.category, body.round.entertainment a.link {
+body.round.entertainment .button.simple, body.round.entertainment p.category, body.round.entertainment a.link, body.round.entertainment .time {
   color: #f44336; }
 
 body.round.entertainment .button.simple:hover {
@@ -598,7 +617,7 @@ body.round.entertainment .button {
 body.round.science .game-background {
   background: #4CAF50; }
 
-body.round.science .button.simple, body.round.science p.category, body.round.science a.link {
+body.round.science .button.simple, body.round.science p.category, body.round.science a.link, body.round.science .time {
   color: #4caf50; }
 
 body.round.science .button.simple:hover {
@@ -614,7 +633,7 @@ body.round.science .button {
 body.round.art .game-background {
   background: #673AB7; }
 
-body.round.art .button.simple, body.round.art p.category, body.round.art a.link {
+body.round.art .button.simple, body.round.art p.category, body.round.art a.link, body.round.art .time {
   color: #673ab7; }
 
 body.round.art .button.simple:hover {
@@ -630,7 +649,7 @@ body.round.art .button {
 body.round.history .game-background {
   background: #03A9F4; }
 
-body.round.history .button.simple, body.round.history p.category, body.round.history a.link {
+body.round.history .button.simple, body.round.history p.category, body.round.history a.link, body.round.history .time {
   color: #03a9f4; }
 
 body.round.history .button.simple:hover {
@@ -646,7 +665,7 @@ body.round.history .button {
 body.round.sports .game-background {
   background: #FF9800; }
 
-body.round.sports .button.simple, body.round.sports p.category, body.round.sports a.link {
+body.round.sports .button.simple, body.round.sports p.category, body.round.sports a.link, body.round.sports .time {
   color: #ff9800; }
 
 body.round.sports .button.simple:hover {
@@ -662,7 +681,7 @@ body.round.sports .button {
 body.round.correct .game-background {
   background: #2E7D32; }
 
-body.round.correct .button.simple, body.round.correct p.category, body.round.correct a.link {
+body.round.correct .button.simple, body.round.correct p.category, body.round.correct a.link, body.round.correct .time {
   color: #2e7d32; }
 
 body.round.correct .button.simple:hover {
@@ -678,7 +697,7 @@ body.round.correct .button {
 body.round.incorrect .game-background {
   background: #B71C1C; }
 
-body.round.incorrect .button.simple, body.round.incorrect p.category, body.round.incorrect a.link {
+body.round.incorrect .button.simple, body.round.incorrect p.category, body.round.incorrect a.link, body.round.incorrect .time {
   color: #b71c1c; }
 
 body.round.incorrect .button.simple:hover {
