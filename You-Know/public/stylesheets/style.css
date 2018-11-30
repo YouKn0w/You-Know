@@ -352,6 +352,40 @@ form {
 .game .button.simple {
   margin: .5rem .3rem; }
 
+.game .newgame {
+  display: block; }
+
+.game p.completed {
+  font-size: 1.8rem;
+  margin: 1rem;
+  margin-bottom: 2rem; }
+
+.game p.total, .game p.questions {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center; }
+
+.game p.points {
+  display: flex;
+  flex-direction: column;
+  font-size: 1.3rem; }
+  .game p.points span.number {
+    margin-top: .5rem;
+    font-size: 1.7rem; }
+  .game p.points span.label {
+    text-transform: uppercase;
+    font-size: 1rem;
+    opacity: .8; }
+
+.game p.total span.label, .game p.questions span.label {
+  text-transform: uppercase;
+  opacity: .8;
+  font-size: .9rem; }
+
+.game p.total span.number, .game p.questions span.number {
+  font-size: 1.2rem; }
+
 .questionInfo {
   display: flex;
   justify-content: space-between;

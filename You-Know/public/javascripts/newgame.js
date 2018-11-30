@@ -93,7 +93,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const category = getCategoryName(question.category)
     let html = `<div class="questionInfo"><p class="category">${category}</p><p class="difficulty">${question.difficulty.charAt(0).toUpperCase() + question.difficulty.slice(1)}</p></div>`
 
-    html += `<div class="rounds"><p>Round ${gameData.questionsAnswered} of ${gameData.numberQuestions}</p></div>`;
+    html += `<div class="rounds"><p>Round ${gameData.questionsAnswered + 1} of ${gameData.numberQuestions}</p></div>`;
 
     html += `
       <div class="question" data-id="${question['_id']}">
@@ -177,12 +177,12 @@ document.addEventListener('DOMContentLoaded', () => {
     addClass(card, 'rotatingPositive');
 
     setTimeout(() => {
-      card.innerHTML = `<p>Finished!</p>
-      <p>Resume:</p>
-      <p>Correct questions: ${gameData.questionsCorrect}</p>
-      <p>Failed questions: ${gameData.questionsFailed}</p>
-      <p>Accumulated points: ${gameData.points}</p>
-      <p><a class="link" href="/game">New game</a></p>
+      card.innerHTML = `<p class="completed">Complete!</p>
+      <p class="total"><span class="label">Total answered:</span> <span class="number">${gameData.questionsCorrect + gameData.questionsFailed}</span></p>
+      <p class="questions"><span class="label">Correct:</span> <span class="number">${gameData.questionsCorrect}</span></p>
+      <p class="questions"><span class="label">Failed:</span> <span class="number">${gameData.questionsFailed}</span></p>
+      <p class="points"><span class="label">Points</span><span class="number">${gameData.points}</span></p>
+      <p><a class="button newgame" href="/game">New game</a></p>
       <p><a class="link" href="/main">Back to home</a></p>
       `;
       addClass(card, 'rotatingNegative');
