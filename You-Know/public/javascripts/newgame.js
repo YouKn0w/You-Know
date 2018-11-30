@@ -27,8 +27,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const config = { difficulty, rounds, categoryId };
 
-    //console.log(config)
-
     axios.post("/creategame", config)
       .then(response => {
         gameId = response.data.created._id;
@@ -56,23 +54,18 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   function round() {
-    console.log('ronda');
     axios.get(`/game/${gameId}`)
       .then(game => {
-        console.log(game.data);
         gameData = game.data
         if (game.data.numberQuestions === game.data.questionsAnswered) {
           gameFinish();
         } else {
-          console.log('pidiendo siguiente pregunta');
-          console.log(`/question/${game.data.category}/${game.data.difficulty}`)
           return axios.get(`/question/${game.data.category}/${game.data.difficulty}`)
             
         }
 
       })
       .then(question => {
-        console.log('obtenida siguiente pregunta');
         printQuestion(question.data);
         return;
       })
@@ -137,7 +130,6 @@ document.addEventListener('DOMContentLoaded', () => {
       axios.post('/checkquestion', config)
         .then(result => {
 
-          console.log('result', result.data.result);
           if (result.data.result) {
             correct();
           } else {
